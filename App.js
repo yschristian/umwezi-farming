@@ -10,8 +10,8 @@ export default function App() {
     
     <SafeAreaView>
       {/* <Home/> */}
-      {/* <Login/> */}
-      <Request/>
+      <Login/>
+      {/* <Request/> */}
   </SafeAreaView>
   );
 }

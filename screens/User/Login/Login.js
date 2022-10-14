@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, TextInput, Pressable } from "react-native";
 import styles from "./styles";
+import DropShadow from "react-native-drop-shadow";
 
 const Login = () =>{
     return(

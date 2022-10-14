@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         borderRadius:23,
         marginHorizontal:10,
         width:Dimensions.get('screen').width - 20,
+        
     },
     requestText:{
         width:"60%",

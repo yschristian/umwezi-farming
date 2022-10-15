@@ -1,26 +1,26 @@
-import React,{useState} from "react";
-import { Text, View, TextInput, Pressable} from "react-native";
+import React, { useState } from "react";
+import { Text, View, TextInput, Pressable } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import styles from "./styles";
 
-const Request = () =>{
+const Request = () => {
     const [options, setOptions] = useState('')
-    return(
+    return (
         <View style={styles.container}>
-            <Text 
+            <Text
                 style={styles.text}
-                >Partner Request
-                </Text>
+            >Partner Request
+            </Text>
             <View style={styles.userRequest}>
                 <TextInput
                     style={styles.requestText}
                     placeholder="First Name"
                 />
                 <TextInput
-                   style={styles.requestText}
+                    style={styles.requestText}
                     placeholder="Second Name"
                 />
-                
+
                 {/* <RNPickerSelect
                  onValueChange={(options) => setOptions(options)}
                     items={[
@@ -29,8 +29,8 @@ const Request = () =>{
                     ]}
                   style={styles.pickerSelectStyles}
                 /> */}
-                 <TextInput
-                   style={styles.requestText}
+                <TextInput
+                    style={styles.requestText}
                     placeholder="Password"
                 />
                 <Pressable style={styles.button}>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React ,{useState}from "react";
 import { Text, View, TextInput, Pressable } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
+import {Picker as SelectPicker} from '@react-native-picker/picker' 
 import styles from "./styles";
 
 const Request = () => {
-    const [options, setOptions] = useState('')
+    const [work, setWork] = useState();
     return (
         <View style={styles.container}>
             <Text
@@ -20,18 +20,17 @@ const Request = () => {
                     style={styles.requestText}
                     placeholder="Second Name"
                 />
-
-                {/* <RNPickerSelect
-                 onValueChange={(options) => setOptions(options)}
-                    items={[
-                        { label: "SalesPerson", value: "SalesPerson" },
-                        { label: "Farmer", value: "Farmer" },
-                    ]}
-                  style={styles.pickerSelectStyles}
-                /> */}
+                <Text style={styles.optionTitle}>What you do?</Text>
+                <SelectPicker
+                selectedValue={work}
+                onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
+                 style={styles.selectPicker}>
+                    <SelectPicker.Item style={styles.item} label="Farmer" value="Farmer" />
+                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="SalesPesron" />
+                </SelectPicker>
                 <TextInput
                     style={styles.requestText}
-                    placeholder="Password"
+                    placeholder="Decription"
                 />
                 <Pressable style={styles.button}>
                     <Text style={styles.buttonText}>REQUEST</Text>

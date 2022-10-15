@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
         borderRadius:23,
         marginHorizontal:10,
         width:Dimensions.get('screen').width - 20,
-        
     },
     requestText:{
         width:"60%",
@@ -47,6 +46,18 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         fontSize:30,
         },
+    selectPicker:{
+        width: 100,
+        height:50
+        },
+    optionTitle:{
+        color:"white",
+        fontWeight:"bold",
+        fontSize:30,
+    },
+    item:{
+       padding: 12 
+    }
 })
 
 export default styles

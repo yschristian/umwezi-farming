@@ -19,12 +19,13 @@ const Home = () =>{
     return(
     <View style={styles.container}>
         <View style={styles.swiper}>
-           <Swiper
+           {/* <Swiper
             style={{ height: width / 2 }}
             showButtons={false}
             autoplay={true}
+            horizontal={false}
             autoplayTimeout={5}
-           >
+           > */}
             {images.map((item) => (
              <Image
               style={styles.image}
@@ -33,7 +34,7 @@ const Home = () =>{
               resizeMode='contain'
             />
           ))}
-           </Swiper>
+           {/* </Swiper> */}
            
         </View>
     </View>

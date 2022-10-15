@@ -1,21 +1,21 @@
-import {React} from "react"
+import { React } from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome,AntDesign,Ionicons} from '@expo/vector-icons';
-
+import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import Home from "../Home/Home";
 import Login from "../User/Login/Login";
+import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator()
 
 const HomeTabNavigator = () => {
     return (
-        <Tab.Navigator >
+        <Tab.Navigator>
             <Tab.Screen
                 name={'Home'}
                 component={Home}
                 options={{
                     tabBarIcon: (color) => (
-                        <FontAwesome name="home" size={28} color={color} />
+                        <FontAwesome style={styles.icon} name="home" size={28} color={color} />
                     )
                 }}
             />
@@ -25,7 +25,7 @@ const HomeTabNavigator = () => {
                 component={Home}
                 options={{
                     tabBarIcon: (color) => (
-                        <AntDesign name="shoppingcart" size={28} color={color} />
+                        <AntDesign style={styles.icon} name="shoppingcart" size={28} color={color} />
                     )
                 }}
             />
@@ -35,7 +35,7 @@ const HomeTabNavigator = () => {
                 component={Login}
                 options={{
                     tabBarIcon: (color) => (
-                        <Ionicons name="person" size={28} color={color} />
+                        <Ionicons style={styles.icon} name="person" size={28} color={color} />
                     )
                 }}
             />
@@ -45,3 +45,8 @@ const HomeTabNavigator = () => {
 
 export default HomeTabNavigator
 
+const styles = StyleSheet.create({
+    icon: {
+        color: "green"
+    }
+})

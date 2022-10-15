@@ -5,16 +5,18 @@ import Login from './screens/User/Login/Login';
 import UserProfile from './screens/User/Profile/UserProfile';
 import Register from './screens/User/Register/Register';
 import Request from './screens/User/Request/Request';
+import Router from "./screens/Navigation/Router"
 
 export default function App() {
   return (
-    
-    <SafeAreaView>
-      <Home/>
+    <>
+      <StatusBar/>
+      <Router/>
+      {/* <Home/> */}
       {/* <Register/> */}
       {/* <UserProfile/> */}
       {/* <Request/> */}
-  </SafeAreaView>
+    </>
   );
 }
 

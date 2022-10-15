@@ -1,38 +1,44 @@
-import React from "react";
+import React ,{useState} from "react";
 import { Text, View, TextInput, Pressable } from "react-native";
+import {Picker as SelectPicker} from '@react-native-picker/picker'
+
 import styles from "./styles";
 
 const Register = () => {
+    const [work, setWork] = useState();
     return (
         <View style={styles.container}>
             <Text
                 style={styles.text}
-            >Register New Partner
+            >Partner Register
             </Text>
-            <View style={styles.userLogin}>
+            <View style={styles.userRequest}>
                 <TextInput
-                    style={styles.userText}
-                    placeholder="UserName"
+                    style={styles.requestText}
+                    placeholder="First Name"
                 />
                 <TextInput
-                    style={styles.userText}
-                    placeholder="Email"
+                    style={styles.requestText}
+                    placeholder="Second Name"
                 />
-                <TextInput
-                    style={styles.userText}
-                    placeholder="Password"
+                 <TextInput
+                    style={styles.requestText}
+                    placeholder="username"
                 />
+                <Text style={styles.optionTitle}>Role?</Text>
+                <SelectPicker
+                selectedValue={work}
+                onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
+                 style={styles.selectPicker}>
+                    <SelectPicker.Item style={styles.item} label="Farmer" value="Farmer" />
+                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="SalesPesron" />
+                </SelectPicker>
+                {/* <TextInput
+                    style={styles.requestText}
+                    placeholder="Decription"
+                /> */}
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>LOGIN</Text>
-                </Pressable>
-                <View style={styles.row}>
-                    <Text>
-                        Are you Our Patner? if not ,
-                    </Text>
-                    <Text style={styles.textRequest}>Request</Text>
-                </View>
-                <Pressable style={styles.butn}>
-                    <Text style={styles.forgotButton}>Forgot Password?</Text>
+                    <Text style={styles.buttonText}>REGESTER</Text>
                 </Pressable>
             </View>
         </View>

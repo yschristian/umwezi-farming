@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Image, View,Dimensions,StyleSheet ,ScrollView} from "react-native";
 import Swiper from "react-native-swiper"
 import CardHome from "../../components/CardHome";
+import ProductList from "../../components/ProductList";
 const { width } = Dimensions.get('window');
 
 
@@ -39,6 +40,7 @@ const Home = () =>{
            
         </View>
         <CardHome/>
+        <ProductList/>
     </ScrollView>
     )
 }

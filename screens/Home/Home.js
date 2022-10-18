@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
-import { Image, View,Dimensions,StyleSheet } from "react-native";
+import { Image, View,Dimensions,StyleSheet ,ScrollView} from "react-native";
 import Swiper from "react-native-swiper"
+import CardHome from "../../components/CardHome";
 const { width } = Dimensions.get('window');
 
 
@@ -9,7 +10,7 @@ const Home = () =>{
 
   useEffect(() => {
     setImages([
-         "https://www.collinsdictionary.com/images/full/apple_158989157.jpg",
+        //  "https://www.collinsdictionary.com/images/full/apple_158989157.jpg",
          "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg"
     ])
     return () => {
@@ -17,7 +18,7 @@ const Home = () =>{
     }
   }, [])
     return(
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
         <View style={styles.swiper}>
            {/* <Swiper
             style={{ height: width / 2 }}
@@ -37,7 +38,8 @@ const Home = () =>{
            {/* </Swiper> */}
            
         </View>
-    </View>
+        <CardHome/>
+    </ScrollView>
     )
 }
 

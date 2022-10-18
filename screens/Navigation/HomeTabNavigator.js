@@ -4,6 +4,9 @@ import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import Home from "../Home/Home";
 import Login from "../User/Login/Login";
 import { StyleSheet } from "react-native";
+import CartItems from "../Cart/CartItem";
+
+
 
 const Tab = createBottomTabNavigator()
 
@@ -22,7 +25,7 @@ const HomeTabNavigator = () => {
 
             <Tab.Screen
                 name={'Cart'}
-                component={Home}
+                component={CartItems}
                 options={{
                     tabBarIcon: (color) => (
                         <AntDesign style={styles.icon} name="shoppingcart" size={28} color={color} />

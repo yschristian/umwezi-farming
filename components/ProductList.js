@@ -1,14 +1,21 @@
 import React from "react";
-import {View, Text ,Image ,StyleSheet} from "react-native"
+import {View, Text ,Image ,StyleSheet,TouchableOpacity} from "react-native"
 import { Ionicons } from '@expo/vector-icons';
+
+// import fruits from "../assets/data/fruits";
 
 
 
 const ProductList = () =>{
     return(
         <View style={styles.container}>
-            {/* <Text>Recommended Products</Text> */}
-             <View style={styles.card}>
+            <View style={styles.viewCont}>
+                <Text>Recommended Products</Text>
+                <TouchableOpacity >
+                    <Text>View All</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.card} >
                 <Image 
                 style={styles.image}
                  source={{uri:"https://static.vecteezy.com/system/resources/previews/001/937/723/original/rice-package-mockup-thailand-food-products-illustration-vector.jpg"}}
@@ -56,7 +63,8 @@ const styles = StyleSheet.create({
         marginTop:50,
         // marginHorizontal: 20,
         flexDirection:"row",
-        flexWrap:"wrap"
+        flexWrap:"wrap",
+        // backgroundColor:"blue"
     },
     card:{
         marginTop:15,
@@ -89,5 +97,10 @@ const styles = StyleSheet.create({
         top: 0
     },
 
-
+    viewCont:{
+        backgroundColor:"red",
+        width:200,
+        marginBottom:50,
+        flexDirection:"row",
+    }
 })

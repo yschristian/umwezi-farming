@@ -4,13 +4,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import HomeTabNavigator from "./HomeTabNavigator";
 import Request from "../User/Request/Request";
 import ProfileTabNavigator from "./ProfileTabNavigator";
+import AuthStack from "./AuthStack";
 
 const Stack = createStackNavigator()
 
 const Router = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            {/* <Stack.Navigator>
 
                 <Stack.Screen
                     name={"Home"}
@@ -36,7 +37,8 @@ const Router = () => {
                     }}
                 />
 
-            </Stack.Navigator>
+            </Stack.Navigator> */}
+            <AuthStack/>
         </NavigationContainer>
     )
 }

@@ -1,5 +1,6 @@
 import {View, Text ,Image,ImageBackground ,StyleSheet, TouchableOpacity} from "react-native"
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer"
+import { AntDesign,Ionicons } from '@expo/vector-icons';
  
 const CustomDrawer =(props) =>{
     return(
@@ -21,11 +22,17 @@ const CustomDrawer =(props) =>{
             </DrawerContentScrollView>
             <View style={{padding:20,borderTopWidth:1, borderTopColor:"#ccc"}}>
                 <TouchableOpacity style={{paddingVertical:15}}>
-                    <View>
-                    <Text>Our custom text</Text>
+                    <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <AntDesign name="sharealt" size={24} color="black" />
+                    <Text style={{fontSize: 15, marginLeft:5}}>Tell a Friend</Text>
                     </View>
                 </TouchableOpacity>
-               
+                <TouchableOpacity style={{paddingVertical:15}}>
+                    <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <Ionicons name="exit-outline" size={24} color="black" />
+                    <Text style={{fontSize: 15, marginLeft:5}}>Log Out</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
       

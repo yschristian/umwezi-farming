@@ -52,6 +52,7 @@ export default ProductList
 
 const styles = StyleSheet.create({
     container:{
+        flex:1,
         marginTop:50,
         // marginHorizontal: 20,
         flexDirection:"row",
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         marginTop:15,
         marginBottom:50,
         backgroundColor:"white",
-        width:180,
+        width:172,
         height:200,
         marginHorizontal: 12,
         borderRadius:15,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
         fontSize:18,
     },
     icon:{
-        left:140,
+        left:130,
         top: 0
     },
 

@@ -39,6 +39,7 @@ export default CardHome
 
 const styles = StyleSheet.create({
     container:{
+        flex:1,
         marginTop:20,
         marginHorizontal: 20,
         flexDirection:"row",
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     },
     wrapper:{
         backgroundColor:"white",
-        width:100,
+        width:95,
         height:70,
         justifyContent:"center",
         alignItems:"center",

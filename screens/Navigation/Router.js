@@ -5,21 +5,22 @@ import HomeTabNavigator from "./HomeTabNavigator";
 import Request from "../User/Request/Request";
 import ProfileTabNavigator from "./ProfileTabNavigator";
 import AuthStack from "./AuthStack";
+import Recommanded from "../Product/Recommanded";
 
 const Stack = createStackNavigator()
 
 const Router = () => {
     return (
         <NavigationContainer>
-            {/* <Stack.Navigator>
-
+             <Stack.Navigator>
+            
                 <Stack.Screen
                     name={"Home"}
                     component={HomeTabNavigator}
                     options={{
                         headerShown: false
                     }}
-                />
+                /> 
 
                 <Stack.Screen
                     name={"Request"}
@@ -36,9 +37,11 @@ const Router = () => {
                         headerShown: false
                     }}
                 />
-
-            </Stack.Navigator> */}
-            <AuthStack/>
+                <Stack.Screen
+                name={'Recommanded'}
+                component={Recommanded}
+                 />
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }

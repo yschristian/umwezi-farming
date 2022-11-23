@@ -6,8 +6,6 @@ import Login from "../User/Login/Login";
 import { StyleSheet } from "react-native";
 import CartItems from "../Cart/CartItem";
 
-
-
 const Tab = createBottomTabNavigator()
 
 const HomeTabNavigator = () => {
@@ -42,6 +40,7 @@ const HomeTabNavigator = () => {
                     )
                 }}
             />
+            
         </Tab.Navigator>
     )
 }

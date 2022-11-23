@@ -7,6 +7,7 @@ import ProfileTabNavigator from "./ProfileTabNavigator";
 import AuthStack from "./AuthStack";
 import Recommanded from "../Product/Recommanded";
 import ProductItem from "../Product/ProductItem";
+import Checkout from "../Payment/Checkout";
 
 const Stack = createStackNavigator()
 
@@ -45,6 +46,10 @@ const Router = () => {
                  <Stack.Screen
                 name={'ProductItem'}
                 component={ProductItem}
+                 />
+                  <Stack.Screen
+                name={'checkout'}
+                component={Checkout}
                  />
             </Stack.Navigator>
             {/* <AuthStack/> */}

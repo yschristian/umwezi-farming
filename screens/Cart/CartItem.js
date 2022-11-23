@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
 
-const CartItems = () => {
+const CartItems = ({navigation}) => {
     const [quantity, setQuantity] = useState(0)
     //const image = route.params.image
     //const price = route.params.price
@@ -89,7 +89,7 @@ const CartItems = () => {
                 </View>
             </View> */}
             <View>
-                <TouchableOpacity style={styles.checkoutContainer}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={()=> navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

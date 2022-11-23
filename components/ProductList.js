@@ -10,25 +10,27 @@ const ProductList = () => {
         <View style={styles.container}>
             <View style={styles.viewCont}>
                 <Text style={styles.recommanded}>Recommended Products</Text>
-                <TouchableOpacity onPress={()=> navigation.navigate("Recommanded")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Recommanded")}>
                     <Text style={styles.recommanded}>View All</Text>
                 </TouchableOpacity>
             </View>
             <FlatList
                 data={fruits}
-                keyExtractor={(item,index) => item.id}
-                renderItem={({item}) => (
-                  <View style={styles.cardContainer}> 
-                    <View style={styles.card} key={item.id}>
-                        <Image
-                            style={styles.image}
-                            source={{ uri: item.image }}
-                        />
-                        <Text style={styles.text1}>{item.title}</Text>
-                        <Text style={styles.text}>$ {item.price}</Text>
-                        <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-                    </View>
-                    </View> 
+                keyExtractor={(item, index) => item.id}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={()=> navigation.navigate('ProductItem',{title:item.title,price:item.price,image:item.image})}>
+                        <View style={styles.cardContainer}>
+                            <View style={styles.card} key={item.id}>
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.image }}
+                                />
+                                <Text style={styles.text1}>{item.title}</Text>
+                                <Text style={styles.text}>$ {item.price}</Text>
+                                <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
+                            </View>
+                        </View>
+                    </TouchableOpacity>
                 )}
             />
 
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
         // flexWrap: "wrap",
         // backgroundColor:"blue"
     },
-    cardContainer:{
+    cardContainer: {
         flex: 1,
         flexDirection: "row",
     },
@@ -110,15 +112,15 @@ const styles = StyleSheet.create({
     },
 
     viewCont: {
-       
+
         width: 200,
         marginBottom: 50,
         flexDirection: "row",
-        justifyContent:"space-between"
+        justifyContent: "space-between"
     },
-    recommanded:{
-        fontSize:15,
-        color:"green",
+    recommanded: {
+        fontSize: 15,
+        color: "green",
         marginRight: 60
     }
 })

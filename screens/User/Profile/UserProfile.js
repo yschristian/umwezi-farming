@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, Image, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, Image,ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 
@@ -10,7 +10,7 @@ const UserProfile = () => {
  const handleUpdate = () =>{}
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.centeredView}>
         <Modal
           animationType="slide"
@@ -75,7 +75,7 @@ const UserProfile = () => {
           <Text style={styles.changeButton}>LOG OUT</Text>
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -83,15 +83,16 @@ export default UserProfile
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#8cd98c",
+    // backgroundColor: "#8cd98c",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    flex:1
   },
   text: {
     marginTop: 50,
     marginLeft: 50,
     marginBottom: 50,
-    color: "white",
+    color: "#8cd98c",
     fontSize: 20,
     fontWeight: "bold"
   },

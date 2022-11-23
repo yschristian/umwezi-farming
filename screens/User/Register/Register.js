@@ -1,5 +1,5 @@
 import React ,{useState} from "react";
-import { Text, View, TextInput, Pressable } from "react-native";
+import { Text, View, TextInput, Pressable,ScrollView } from "react-native";
 import {Picker as SelectPicker} from '@react-native-picker/picker'
 
 import styles from "./styles";
@@ -7,7 +7,7 @@ import styles from "./styles";
 const Register = () => {
     const [work, setWork] = useState();
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text
                 style={styles.text}
             >Partner Register
@@ -41,7 +41,7 @@ const Register = () => {
                     <Text style={styles.buttonText}>REGESTER</Text>
                 </Pressable>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

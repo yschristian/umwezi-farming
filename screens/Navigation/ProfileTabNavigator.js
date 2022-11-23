@@ -49,7 +49,7 @@ const ProfileTabNavigator = () => {
                 }}
             />
 
-            <Tab.Screen
+            {/* <Tab.Screen
                 name={'Add User'}
                 component={Register}
                 options={{
@@ -57,7 +57,7 @@ const ProfileTabNavigator = () => {
                         <Entypo name="add-user" style={styles.icon} size={28} color={color} />
                     )
                 }}
-            />
+            /> */}
         </Tab.Navigator>
     )
 }

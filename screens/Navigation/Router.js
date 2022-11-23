@@ -46,7 +46,6 @@ const Router = () => {
                 name={'ProductItem'}
                 component={ProductItem}
                  />
-        
             </Stack.Navigator>
             {/* <AuthStack/> */}
         </NavigationContainer>

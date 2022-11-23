@@ -40,9 +40,9 @@ const Home = () => {
         </Swiper>
 
       </View>
-      <CardHome />
-      <ProductList />
     </View>
+    <CardHome />
+    <ProductList />
     </ScrollView>
   )
 }

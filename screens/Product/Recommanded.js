@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 50,
         // marginHorizontal: 20,
-        flexDirection: "row",
+        // flexDirection: "row",
         // flexWrap: "wrap",
         // backgroundColor:"blue"
     },

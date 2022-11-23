@@ -6,6 +6,7 @@ import Request from "../User/Request/Request";
 import ProfileTabNavigator from "./ProfileTabNavigator";
 import AuthStack from "./AuthStack";
 import Recommanded from "../Product/Recommanded";
+import ProductItem from "../Product/ProductItem";
 
 const Stack = createStackNavigator()
 
@@ -33,15 +34,21 @@ const Router = () => {
                 <Stack.Screen
                     name={"Profile"}
                     component={ProfileTabNavigator}
-                    options={{
-                        headerShown: false
-                    }}
+                    // options={{
+                    //     headerShown: false
+                    // }}
                 />
                 <Stack.Screen
                 name={'Recommanded'}
                 component={Recommanded}
                  />
+                 <Stack.Screen
+                name={'ProductItem'}
+                component={ProductItem}
+                 />
+        
             </Stack.Navigator>
+            {/* <AuthStack/> */}
         </NavigationContainer>
     )
 }

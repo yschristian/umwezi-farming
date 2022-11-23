@@ -2,41 +2,41 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: "#8cd98c",
         width:"100%",
         height:"100%",
-        flex:1
+        flex:1,
     },
     userLogin:{
         marginVertical:100,
         justifyContent:'center',
-        alignItems:"center"
+        alignItems:"center",
+        
     },
     userText:{
-        width:"60%",
-        height:40,
-        margin:20,
-        borderRadius:15,
-        backgroundColor: "white",
-        color: "black",
-        paddingLeft:10,
-        fontSize: 16,
-        fontWeight:"bold"
+        width: '80%',
+        height: 60,
+        backgroundColor: 'white',
+        margin: 10,
+        borderRadius: 20,
+        padding: 10,
+        borderWidth: 2,
+        borderColor: '#8cd98c',
     },
     text:{
-        color: "white",
+        color: "#8cd98c",
         textAlign:"center",
         marginTop:100,
         fontWeight:"bold",
         fontSize:30
     },
     button:{
-        width:"60%",
-        height:30,
+        width:"80%",
+        height:40,
         margin:20,
         borderRadius:15,
         alignItems:'center',
-        backgroundColor:"#66cc66"
+        backgroundColor:"#8cd98c",
+        justifyContent:"center"
     },
     buttonText:{
         color:"white",
@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     textRequest:{
-        color:"white",
-        fontWeight:"bold"
+        color:"#8cd98c",
+        fontWeight:"bold",
+        
     },
     butn:{
         marginTop: 150,

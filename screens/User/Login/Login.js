@@ -1,12 +1,13 @@
 import React from "react";
-import { Text, View, TextInput, Pressable } from "react-native";
+import { Text, View,ScrollView, TextInput, Pressable } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
+
 
 const Login = () => {
     const navigation = useNavigation()
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text
                 style={styles.text}
             >Login To Your Account
@@ -36,7 +37,7 @@ const Login = () => {
                     <Text style={styles.forgotButton}>Forgot Password?</Text>
                 </Pressable>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

@@ -1,12 +1,12 @@
 import React ,{useState}from "react";
-import { Text, View, TextInput, Pressable } from "react-native";
+import { Text, View,ScrollView, TextInput, Pressable } from "react-native";
 import {Picker as SelectPicker} from '@react-native-picker/picker' 
 import styles from "./styles";
 
 const Request = () => {
     const [work, setWork] = useState();
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text
                 style={styles.text}
             >Partner Request
@@ -36,7 +36,7 @@ const Request = () => {
                     <Text style={styles.buttonText}>REQUEST</Text>
                 </Pressable>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

@@ -5,10 +5,10 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 
 const CartItems = () => {
     const [quantity, setQuantity] = useState(0)
-    const image = route.params.image
-    const price = route.params.price
-    console.log(image, price);
-    const total = price * 2
+    //const image = route.params.image
+    //const price = route.params.price
+    // console.log(image, price);
+    // const total = price * 2
     const handleQuantity =(type)=>{
         if(type==="dec"){
           quantity >= 1 && setQuantity(quantity - 1)

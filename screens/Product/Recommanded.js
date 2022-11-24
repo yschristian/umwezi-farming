@@ -14,6 +14,7 @@ const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <FlatList
+                numColumns={2}
                 data={fruits}
                 keyExtractor={(item, index) => item.id}
                 renderItem={({ item }) => (

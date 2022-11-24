@@ -15,6 +15,7 @@ const ProductList = () => {
                 </TouchableOpacity>
             </View>
             <FlatList
+                numColumns={2}
                 data={fruits}
                 keyExtractor={(item, index) => item.id}
                 renderItem={({ item }) => (
@@ -112,15 +113,16 @@ const styles = StyleSheet.create({
     },
 
     viewCont: {
-
-        width: 200,
+        width: "100%",
         marginBottom: 50,
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+       
     },
     recommanded: {
         fontSize: 15,
         color: "green",
-        marginRight: 60
+        // marginRight: 60
+        // backgroundColor:"green"
     }
 })

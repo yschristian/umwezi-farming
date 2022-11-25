@@ -17,7 +17,7 @@ const HomeTabNavigator = () => {
                 options={{
                     tabBarIcon: (color) => (
                         <FontAwesome style={styles.icon} name="home" size={28} color={color} />
-                    )
+                    ),
                 }}
             />
 

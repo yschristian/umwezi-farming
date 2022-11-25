@@ -15,14 +15,20 @@ const Router = () => {
     return (
         <NavigationContainer>
              <Stack.Navigator>
-            
-                <Stack.Screen
+             <Stack.Screen
+                name={'AuthStack'}
+                component={AuthStack}
+                options={{
+                    headerShown: false
+                }}
+                 />
+                {/* <Stack.Screen
                     name={"Home"}
                     component={HomeTabNavigator}
                     options={{
                         headerShown: false
                     }}
-                /> 
+                />  */}
 
                 <Stack.Screen
                     name={"Request"}
@@ -51,8 +57,8 @@ const Router = () => {
                 name={'checkout'}
                 component={Checkout}
                  />
+                
             </Stack.Navigator>
-            {/* <AuthStack/> */}
         </NavigationContainer>
     )
 }

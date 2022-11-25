@@ -1,8 +1,9 @@
 import {View, Text ,Image ,StyleSheet} from "react-native"
+import { TouchableOpacity } from "react-native-gesture-handler"
 const Product =()=>{
     return(
         <View>
-            <Text>Product</Text>
+            <Text>Add Product</Text>
         </View>
     )
 }

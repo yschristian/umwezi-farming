@@ -1,16 +1,25 @@
-import React from "react";
+import React, {useState,useEffect } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import fruits from "../../assets/data/fruits"
 import { useNavigation } from "@react-navigation/native";
-
-
-
-// import fruits from "../assets/data/fruits";
+import axios from "axios";
 
 const Recommanded = () => {
-const navigation = useNavigation()
-
+    const navigation = useNavigation()
+    const [products,setProducts] = useState([])
+    const getProduct = async () => {
+        try {
+            const res = await axios.get("https://umwezi-farming-api.vercel.app/product/All")
+            console.log(res.data);
+        } catch (error) {
+            console.log({"error":error});
+        }
+    }
+    useEffect(() => {
+        getProduct()
+    }, [])
+//   console.log(products);
     return (
         <View style={styles.container}>
             <FlatList
@@ -26,32 +35,13 @@ const navigation = useNavigation()
                             />
                             <Text style={styles.text1}>{item.title}</Text>
                             <Text style={styles.text}>$ {item.price}</Text>
-                            <TouchableOpacity onPress={()=>navigation.navigate("Cart",{id:item.id,image:item.image,price:item.price})}>
+                            <TouchableOpacity onPress={() => navigation.navigate("Cart", { id: item.id, image: item.image, price: item.price })}>
                                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
                             </TouchableOpacity>
                         </View>
                     </View>
                 )}
             />
-
-            {/* <View style={styles.card}>
-                <Image 
-                style={styles.image}
-                 source={{uri:"https://www.collinsdictionary.com/images/full/apple_158989157.jpg"}}
-                 />
-                 <Text style={styles.text1}>Fruits</Text>
-                 <Text style={styles.text}>$ 20</Text>
-                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-             </View>
-            <View style={styles.card}>
-                <Image 
-                style={styles.image}
-                 source={{uri:"https://www.wheafree.com/wp-content/uploads/2020/11/maize-floor-1.jpg"}}
-                 />
-                 <Text style={styles.text1}>Fruits</Text>
-                 <Text style={styles.text}>$ 20</Text>
-                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-             </View> */}
         </View>
     )
 }

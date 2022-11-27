@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         flexDirection: "row",
         justifyContent: "space-between",  
+        paddingHorizontal:10,
     },
     recommanded: {
         fontSize: 18,

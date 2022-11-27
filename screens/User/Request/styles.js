@@ -2,16 +2,14 @@ import { StyleSheet ,Dimensions} from "react-native"
 
 const styles = StyleSheet.create({
     container:{
-        //backgroundColor: "#8cd98c",
         width:"100%",
         height:"100%",
         flex:1
     },
     userRequest:{
-        marginVertical:100,
+        marginVertical:50,
         justifyContent:'center',
         alignItems:"center",
-        // backgroundColor:"#339933", 
         borderRadius:23,
         marginHorizontal:10,
         width:Dimensions.get('screen').width - 20,

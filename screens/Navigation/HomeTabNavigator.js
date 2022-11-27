@@ -1,10 +1,11 @@
 import { React } from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, AntDesign, Ionicons,Feather } from '@expo/vector-icons';
 import Home from "../Home/Home";
 import Login from "../User/Login/Login";
 import { StyleSheet } from "react-native";
 import CartItems from "../Cart/CartItem";
+import Request from "../User/Request/Request";
 
 const Tab = createBottomTabNavigator()
 
@@ -32,11 +33,20 @@ const HomeTabNavigator = () => {
             />
 
             <Tab.Screen
-                name={'Login'}
-                component={Login}
+                name={'Request'}
+                component={Request}
                 options={{
                     tabBarIcon: (color) => (
                         <Ionicons style={styles.icon} name="person" size={28} color={color} />
+                    )
+                }}
+            />
+             <Tab.Screen
+                name={'Settings'}
+                component={Home}
+                options={{
+                    tabBarIcon: (color) => (
+                        <Feather name="settings" style={styles.icon} size={28} color={color} />
                     )
                 }}
             />

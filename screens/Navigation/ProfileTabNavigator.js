@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, Feather, Ionicons, AntDesign, FontAwesome } from '@expo/vector-icons';
 import Home from "../Home/Home";
 import { StyleSheet } from "react-native";
-import Register from "../User/Register/Register"
 import UserProfile from "../User/Profile/UserProfile";
 
 const Tab = createBottomTabNavigator()
@@ -36,15 +35,6 @@ const ProfileTabNavigator = () => {
                 options={{
                     tabBarIcon: (color) => (
                         <Ionicons style={styles.icon} name="person" size={28} color={color} />
-                    )
-                }}
-            />
-            <Tab.Screen
-                name={'Settings'}
-                component={UserProfile}
-                options={{
-                    tabBarIcon: (color) => (
-                        <Feather name="settings" style={styles.icon} size={28} color={color} />
                     )
                 }}
             />

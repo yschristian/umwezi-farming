@@ -2,12 +2,13 @@ import React from "react";
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import HomeTabNavigator from "./HomeTabNavigator";
-import Request from "../User/Request/Request";
+import Register from "../User/Register/Register"
 import ProfileTabNavigator from "./ProfileTabNavigator";
 import AuthStack from "./AuthStack";
 import Recommanded from "../Product/Recommanded";
 import ProductItem from "../Product/ProductItem";
 import Checkout from "../Payment/Checkout";
+import Login from "../User/Login/Login";
 
 const Stack = createStackNavigator()
 
@@ -22,19 +23,19 @@ const Router = () => {
                     headerShown: false
                 }}
                  />
-                {/* <Stack.Screen
-                    name={"Home"}
-                    component={HomeTabNavigator}
+                <Stack.Screen
+                    name={"Register"}
+                    component={Register}
                     options={{
-                        headerShown: false
+                        title:"Signup"
                     }}
-                />  */}
+                /> 
 
                 <Stack.Screen
-                    name={"Request"}
-                    component={Request}
+                    name={"Login"}
+                    component={Login}
                     options={{
-                        title: "Request"
+                        title: "Login"
                     }}
                 />
 

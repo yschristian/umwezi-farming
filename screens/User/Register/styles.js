@@ -2,12 +2,12 @@ import { StyleSheet ,Dimensions} from "react-native"
 
 const styles = StyleSheet.create({
     container:{
-       // backgroundColor: "#8cd98c",
         width:"100%",
-        height:"100%"
+        height:"100%",
+        flex:1
     },
     userRequest:{
-        marginVertical:100,
+        marginVertical:80,
         justifyContent:'center',
         alignItems:"center", 
         borderRadius:23,
@@ -56,7 +56,17 @@ const styles = StyleSheet.create({
     },
     item:{
        padding: 12 
-    }
+    },
+    row:{
+        flexDirection:'row',
+        fontSize: 12,
+        marginTop:30
+    },
+    textRequest:{
+        color:"#8cd98c",
+        fontWeight:"bold",
+        
+    },
 })
 
 export default styles

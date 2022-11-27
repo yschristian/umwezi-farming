@@ -26,10 +26,10 @@ const Login = () => {
                 </Pressable>
                 <View style={styles.row}>
                     <Text>
-                        Are you Our Patner? if not ,
+                        Are you a Member? if not ,
                     </Text>
-                    <Pressable onPress={()=> navigation.navigate("Request")}>
-                        <Text style={styles.textRequest}>Request</Text>
+                    <Pressable onPress={()=> navigation.navigate("Register")}>
+                        <Text style={styles.textRequest}>Signup</Text>
                     </Pressable>
                     
                 </View>

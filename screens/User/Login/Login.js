@@ -21,7 +21,7 @@ const Login = () => {
                     style={styles.userText}
                     placeholder="Type your Password"
                 />
-                <Pressable style={styles.button} onPress={()=> navigation.navigate("Profile") }>
+                <Pressable style={styles.button} onPress={()=> navigation.navigate("AuthStack") }>
                     <Text style={styles.buttonText}>LOGIN</Text>
                 </Pressable>
                 <View style={styles.row}>

@@ -34,34 +34,6 @@ const ProductList = () => {
                     </TouchableOpacity>
                 )}
             />
-
-            {/* <View style={styles.card}>
-                <Image 
-                style={styles.image}
-                 source={{uri:"https://www.collinsdictionary.com/images/full/apple_158989157.jpg"}}
-                 />
-                 <Text style={styles.text1}>Fruits</Text>
-                 <Text style={styles.text}>$ 20</Text>
-                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-             </View> */}
-            {/* <View style={styles.card}>
-                <Image 
-                style={styles.image}
-                 source={{uri:"https://www.wheafree.com/wp-content/uploads/2020/11/maize-floor-1.jpg"}}
-                 />
-                 <Text style={styles.text1}>Fruits</Text>
-                 <Text style={styles.text}>$ 20</Text>
-                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-             </View> */}
-            {/* <View style={styles.card}>
-                <Image 
-                style={styles.image}
-                 source={{uri:"https://www.barrypackaging.com/media/wysiwyg/custom-paper-potato-bags-ireland.jpg"}}
-                 />
-                 <Text style={styles.text1}>Irish Potato</Text>
-                 <Text style={styles.text}>$ 20</Text>
-                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-             </View> */}
         </View>
     )
 }

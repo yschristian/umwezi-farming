@@ -9,6 +9,7 @@ import Recommanded from "../Product/Recommanded";
 import ProductItem from "../Product/ProductItem";
 import Checkout from "../Payment/Checkout";
 import Login from "../User/Login/Login";
+import UserProfile from "../User/Profile/UserProfile";
 
 const Stack = createStackNavigator()
 
@@ -41,7 +42,7 @@ const Router = () => {
 
                 <Stack.Screen
                     name={"Profile"}
-                    component={ProfileTabNavigator}
+                    component={UserProfile}
                     // options={{
                     //     headerShown: false
                     // }}

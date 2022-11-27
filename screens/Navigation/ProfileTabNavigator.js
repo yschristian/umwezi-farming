@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator()
 const ProfileTabNavigator = () => {
     return (
         <Tab.Navigator>
-            <Tab.Screen
+            {/* <Tab.Screen
                 name={'Home'}
                 component={Home}
                 options={{
@@ -18,8 +18,8 @@ const ProfileTabNavigator = () => {
                         <FontAwesome name="home" style={styles.icon} size={28} color={color} />
                     )
                 }}
-            />
-            <Tab.Screen
+            /> */}
+            {/* <Tab.Screen
                 name={'Cart'}
                 component={UserProfile}
                 options={{
@@ -27,7 +27,7 @@ const ProfileTabNavigator = () => {
                         <AntDesign name="shoppingcart" style={styles.icon} size={28} color={color} />
                     )
                 }}
-            />
+            /> */}
             
             <Tab.Screen
                 name={'Profile'}

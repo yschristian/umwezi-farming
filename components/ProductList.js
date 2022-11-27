@@ -11,7 +11,7 @@ const ProductList = () => {
             <View style={styles.viewCont}>
                 <Text style={styles.recommanded}>Recommended Products</Text>
                 <TouchableOpacity onPress={() => navigation.navigate("Recommanded")}>
-                    <Text style={styles.recommanded}>View All</Text>
+                    <Text style={styles.recommanded1}>View All</Text>
                 </TouchableOpacity>
             </View>
             <FlatList
@@ -116,13 +116,17 @@ const styles = StyleSheet.create({
         width: "100%",
         marginBottom: 50,
         flexDirection: "row",
-        justifyContent: "space-between",
-       
+        justifyContent: "space-between",  
     },
     recommanded: {
-        fontSize: 15,
+        fontSize: 18,
+        color: "black",
+        fontWeight:"bold"
+    },
+    recommanded1:{
+        fontSize: 16,
         color: "green",
-        // marginRight: 60
-        // backgroundColor:"green"
+        fontWeight:"bold",
+        textDecorationLine:'underline'
     }
 })

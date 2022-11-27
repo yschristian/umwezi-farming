@@ -13,7 +13,7 @@ const CustomDrawer = (props) => {
                     style={{ padding: 20 }}
                 >
                     <Image
-                        source={require("../assets/images/apple.jpg")}
+                        source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
                         style={{ height: 80, width: 80, borderRadius: 40, marginBottom: 10 }}
                     />
                     <TouchableOpacity onPress={()=>navigation.navigate("Login")}>

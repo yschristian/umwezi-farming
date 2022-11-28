@@ -1,44 +1,49 @@
-import React, {useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
-import fruits from "../../assets/data/fruits"
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 const Recommanded = () => {
     const navigation = useNavigation()
-    const [products,setProducts] = useState([])
+    const [products, setProducts] = useState([])
     const getProduct = async () => {
         try {
             const res = await axios.get("https://umwezi-farming-api.vercel.app/product/All")
-            console.log(res.data);
+            setProducts(res.data);
         } catch (error) {
-            console.log({"error":error});
+            console.log({ "error": error });
         }
     }
     useEffect(() => {
         getProduct()
     }, [])
-//   console.log(products);
+    // console.log(products);
     return (
         <View style={styles.container}>
             <FlatList
                 numColumns={2}
-                data={fruits}
-                keyExtractor={(item, index) => item.id}
+                data={products}
+                keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
                     <View style={styles.cardContainer}>
-                        <View style={styles.card} key={item.id}>
-                            <Image
-                                style={styles.image}
-                                source={{ uri: item.image }}
-                            />
-                            <Text style={styles.text1}>{item.title}</Text>
-                            <Text style={styles.text}>$ {item.price}</Text>
-                            <TouchableOpacity onPress={() => navigation.navigate("Cart", { id: item.id, image: item.image, price: item.price })}>
-                                <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity onPress={
+                            () => navigation.navigate('ProductItem', { 
+                            id:item._id
+                            })}>
+                            <View style={styles.card} key={item._id}>
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.Image }}
+                                />
+                                <Text style={styles.text1}>{item.Title}</Text>
+                                <Text style={styles.text}>$ {item.price}</Text>
+                                {/* <Text style={styles.text}>{item.inStock}</Text> */}
+                                <TouchableOpacity onPress={() => navigation.navigate("Cart", { id: item.id, image: item.image, price: item.price })}>
+                                    <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 )}
             />

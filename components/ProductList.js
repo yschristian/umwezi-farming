@@ -19,7 +19,7 @@ const ProductList = () => {
                 data={fruits}
                 keyExtractor={(item, index) => item.id}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={()=> navigation.navigate('ProductItem',{title:item.title,price:item.price,image:item.image})}>
+                    <TouchableOpacity >
                         <View style={styles.cardContainer}>
                             <View style={styles.card} key={item.id}>
                                 <Image

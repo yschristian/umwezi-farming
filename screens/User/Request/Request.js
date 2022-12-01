@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Request = () => {
     const [work, setWork] = useState("");
+    
     const [FirstName, setFirstName] = useState("")
     const [LastName, setLastName] = useState("")
     const [desc, setDesc]= useState("")
@@ -16,7 +17,11 @@ const Request = () => {
     // console.log(Email,work,FirstName,LastName,desc);
 
     const createPartner = () =>{
-        addPartner(dispatch,{work,Email,FirstName,LastName,desc})
+        try {
+            addPartner(dispatch,work,Email,FirstName,LastName,desc)
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <ScrollView style={styles.container}>
@@ -45,8 +50,8 @@ const Request = () => {
                 selectedValue={work}
                 onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
                  style={styles.selectPicker}>
-                    <SelectPicker.Item style={styles.item} label="Farmer" value="Farmer" />
-                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="SalesPesron" />
+                    <SelectPicker.Item style={styles.item} label="Farmer" value="farmer" />
+                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="salesPerson" />
                 </SelectPicker>
                 <TextInput
                     style={styles.requestText}

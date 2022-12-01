@@ -1,13 +1,22 @@
-import React ,{useState} from "react";
-import { Text, View, TextInput, Pressable,ScrollView } from "react-native";
-import {Picker as SelectPicker} from '@react-native-picker/picker'
+import React, { useState } from "react";
+import { Text, View, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../../Redux/apiCalls/userActions";
 
 const Register = () => {
+    const dispatch = useDispatch()
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const navigation = useNavigation()
+
+    const createUser = () => {
+        addUser(dispatch, {username, email, password})
+    }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text
                 style={styles.text}
             >SIGNUP
@@ -16,41 +25,32 @@ const Register = () => {
                 <TextInput
                     style={styles.requestText}
                     placeholder="Username"
+                    onChangeText={(value) => setUsername(value)}
                 />
                 <TextInput
                     style={styles.requestText}
                     placeholder="Email"
+                    onChangeText={(value) => setEmail(value)}
                 />
-                 <TextInput
+                <TextInput
                     style={styles.requestText}
                     placeholder="Password"
+                    onChangeText={(value) => setPassword(value)}
                 />
-                {/* <Text style={styles.optionTitle}>Role?</Text>
-                <SelectPicker
-                selectedValue={work}
-                onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
-                 style={styles.selectPicker}>
-                    <SelectPicker.Item style={styles.item} label="Farmer" value="Farmer" />
-                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="SalesPesron" />
-                </SelectPicker> */}
-                {/* <TextInput
-                    style={styles.requestText}
-                    placeholder="Decription"
-                /> */}
-                <Pressable style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={createUser}>
                     <Text style={styles.buttonText}>Signup</Text>
-                </Pressable>
+                </TouchableOpacity>
                 <View style={styles.row}>
                     <Text>
                         Already a Member?
                     </Text>
-                    <Pressable onPress={()=> navigation.navigate("Register")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Register")}>
                         <Text style={styles.textRequest}>Login</Text>
-                    </Pressable>
-                    
+                    </TouchableOpacity>
+
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

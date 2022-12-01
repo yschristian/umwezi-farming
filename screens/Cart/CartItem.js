@@ -4,7 +4,7 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
 
 
-const CartItems = ({navigation}) => {
+const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
     console.log(cart);
     const [quantity, setQuantity] = useState(0)
@@ -12,87 +12,61 @@ const CartItems = ({navigation}) => {
     //const price = route.params.price
     // console.log(image, price);
     // const total = price * 2
-    const handleQuantity =(type)=>{
-        if(type==="dec"){
-          quantity >= 1 && setQuantity(quantity - 1)
-        }else{
+    const handleQuantity = (type) => {
+        if (type === "dec") {
+            quantity >= 1 && setQuantity(quantity - 1)
+        } else {
             setQuantity(quantity + 1)
         }
     }
     return (
         <View style={styles.container}>
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of: total on this order</Text>
+                <Text style={styles.total}>You save total of:{cart.total} total on this order</Text>
             </View>
-            <View style={styles.preCont}>
-                <View style={styles.listItem}>
-                    <View style={styles.body}>
-                        <View style={styles.rightContainer} >
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>apple</Text>
+            <FlatList
+                data={cart.products}
+                keyExtractor={(item, index) => item._id}
+                renderItem={({ item }) => {
+                    <View style={styles.preCont}>
+                        <View style={styles.listItem}>
+                            <View style={styles.body}>
+                                <View style={styles.rightContainer} >
+                                    <View style={styles.textComp}>
+                                        <Text style={styles.text}>{item.products?.Title}</Text>
+                                    </View>
+                                    <View style={styles.textComp}>
+                                        <Text style={styles.text}>$ {item.price}</Text>
+                                    </View>
+                                    <View style={styles.textComp}>
+                                        <Text style={styles.text}>size:5</Text>
+                                    </View>
+                                </View>
                             </View>
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>$ 12</Text>
-                            </View>
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>size:50kg</Text>
+                            <View style={styles.leftContainer}>
+                                <Image
+                                    resizeMode='contain'
+                                    style={styles.image}
+                                    source={{
+                                        uri: item.Image
+                                    }}
+                                />
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.leftContainer}>
-                        <Image
-                            resizeMode='contain'
-                            style={styles.image}
-                            source={{
-                                uri: "https://www.collinsdictionary.com/images/full/apple_158989157.jpg"
-                            }}
-                        />
-                    </View>
-                </View>
-                <View style={styles.iconCont}>
-                    <TouchableOpacity onPress={()=> handleQuantity("inc")}>
-                        <Entypo name="plus" size={24} color="black" />
-                    </TouchableOpacity>
-                    <Text style={styles.quantity}>{quantity}</Text>
-                    <TouchableOpacity onPress={()=> handleQuantity('dec')}>
-                    <AntDesign name="minus" size={24} color="black" />
-                    </TouchableOpacity>
-                    
-                </View>
-            </View>
-            {/* <View style={styles.preCont}>
-                <View style={styles.listItem}>
-                    <View style={styles.body}>
-                        <View style={styles.rightContainer} >
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>apple</Text>
-                            </View>
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>$100</Text>
-                            </View>
-                            <View style={styles.textComp}>
-                                <Text style={styles.text}>size:50kg</Text>
-                            </View>
+                        <View style={styles.iconCont}>
+                            <TouchableOpacity onPress={() => handleQuantity("inc")}>
+                                <Entypo name="plus" size={24} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.quantity}>{quantity}</Text>
+                            <TouchableOpacity onPress={() => handleQuantity('dec')}>
+                                <AntDesign name="minus" size={24} color="black" />
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={styles.leftContainer}>
-                        <Image
-                            resizeMode='contain'
-                            style={styles.image}
-                            source={{
-                                uri: "https://www.collinsdictionary.com/images/full/apple_158989157.jpg"
-                            }}
-                        />
-                    </View>
-                </View>
-                <View style={styles.iconCont}>
-                    <Entypo name="plus" size={24} color="black" />
-                    <Text>Quantity </Text>
-                    <AntDesign name="minus" size={24} color="black" />
-                </View>
-            </View> */}
+                }}
+            />
             <View>
-                <TouchableOpacity style={styles.checkoutContainer} onPress={()=> navigation.navigate("checkout")}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

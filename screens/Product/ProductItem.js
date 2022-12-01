@@ -22,8 +22,9 @@ const ProductItem = ({ route }) => {
     }, [])
     // console.log(item.product.Address);
     const handleClick = () =>{
-        dispatch(addProduct(item))
+        dispatch(addProduct(item.product))
     }
+    // console.log(item);
     return (
         <View style={styles.container}>
             <View>

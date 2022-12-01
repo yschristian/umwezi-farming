@@ -1,10 +1,23 @@
 import React ,{useState}from "react";
-import { Text, View,ScrollView, TextInput, Pressable } from "react-native";
+import { Text, View,ScrollView, TextInput, TouchableOpacity } from "react-native";
 import {Picker as SelectPicker} from '@react-native-picker/picker' 
 import styles from "./styles";
+import { addPartner } from "../../../Redux/apiCalls/partnerActions";
+import { useDispatch } from "react-redux";
+
 
 const Request = () => {
-    const [work, setWork] = useState();
+    const [work, setWork] = useState("");
+    const [FirstName, setFirstName] = useState("")
+    const [LastName, setLastName] = useState("")
+    const [desc, setDesc]= useState("")
+    const [Email, setEmail] = useState("")
+    const dispatch = useDispatch()
+    // console.log(Email,work,FirstName,LastName,desc);
+
+    const createPartner = () =>{
+        addPartner(dispatch,{work,Email,FirstName,LastName,desc})
+    }
     return (
         <ScrollView style={styles.container}>
             <Text
@@ -15,10 +28,17 @@ const Request = () => {
                 <TextInput
                     style={styles.requestText}
                     placeholder="First Name"
+                    onChangeText={(value) => setFirstName(value)}
                 />
                 <TextInput
                     style={styles.requestText}
-                    placeholder="Second Name"
+                    placeholder="Last Name"
+                    onChangeText={(value) => setLastName(value)}
+                />
+                <TextInput
+                    style={styles.requestText}
+                    placeholder="Email"
+                    onChangeText={(value) => setEmail(value)}
                 />
                 <Text style={styles.optionTitle}>What you do?</Text>
                 <SelectPicker
@@ -31,10 +51,11 @@ const Request = () => {
                 <TextInput
                     style={styles.requestText}
                     placeholder="Decription"
+                    onChangeText={(value) => setDesc(value)}
                 />
-                <Pressable style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={createPartner}>
                     <Text style={styles.buttonText}>REQUEST</Text>
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )

@@ -1,11 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from "axios";import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../Redux/CartRedux";
 import { publicRequest } from "../../RequestMethod";
 
 const ProductItem = ({ route }) => {
     const id = route.params.id
     const [item, setitem] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getOne = async () => {
@@ -19,6 +21,9 @@ const ProductItem = ({ route }) => {
         getOne()
     }, [])
     // console.log(item.product.Address);
+    const handleClick = () =>{
+        dispatch(addProduct(item))
+    }
     return (
         <View style={styles.container}>
             <View>
@@ -36,7 +41,7 @@ const ProductItem = ({ route }) => {
                     <Text style={styles.text1}>{item?.product?.Description}</Text>
                 </View>
                 <View style={styles.addtocart}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleClick}>
                         <Text style={styles.textadd}>AddToCart</Text>
                     </TouchableOpacity>
                 </View>
@@ -123,6 +128,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     textadd:{
-        color:"white"
+        color:"white",
+        fontSize: 18,
     }
 })

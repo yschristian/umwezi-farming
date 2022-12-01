@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
+import { useSelector } from "react-redux";
 
 
 const CartItems = ({navigation}) => {
+    const cart = useSelector(state => state.cart)
+    console.log(cart);
     const [quantity, setQuantity] = useState(0)
     //const image = route.params.image
     //const price = route.params.price

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 
 const CartIcon = () => {
-  const  cartItems  = useSelector(state => state.cart)
+  const  { cart: cartItems }  = useSelector(state => state.cart)
   console.log(cartItems.length);
   return (
     <>

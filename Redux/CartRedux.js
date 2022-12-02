@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState =
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
@@ -8,38 +7,34 @@ const cartSlice = createSlice({
     },
 
     reducers: {
-        // addProduct:(state,action)=>{
-        //     // state.quantity += 1;
-        //     state.push(action.payload);
-        //     // state.total += action.payload.product?.price * action.payload.quantity;
-
-        // }
         addProduct: (state, action) => {
-            // console.log(action.payload.product._id)
-            const { _id } = action.payload.product
-            // console.log(_id);
+            // console.log(action.payload._id)
+            const product = action.payload
+            // // console.log(_id);
             // console.log(state.cart);
-            const finds = state.cart.find(item => item.product._id === _id)
+            const finds = state.cart.find(item => item._id === product._id)
             //  console.log(finds);
             if (finds) {
-                // state.cart = state.cart.map(item => item.product._id === _id ? {
-                //         ...item,
-                //         quantity: item.quantity + 1
-                //     }
-                //         : item
-                // )
-                state.cart = state.cart.map(item => {
-                    if (item.product._id === _id) {
+                state.cart = state.cart.map((item) => {
+                    if (item._id === product._id) {
+                        console.log('exist: ')
                         return {
                             ...item,
                             quantity: item.quantity += 1
                         }
-                    }
-                    else {
+                    } else {
                         return item
                     }
                 })
-            } 
+            } else {
+                state.cart = [
+                    ...state.cart,
+                    {
+                        ...product,
+                        quantity: 1
+                    }
+                ]
+            }
             
 
         },

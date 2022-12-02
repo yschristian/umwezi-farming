@@ -27,20 +27,20 @@ const ProductItem = ({ route }) => {
     }
     // console.log(item);
     return (
-        <View style={styles.container} key={item?.product?._id}>
+        <View style={styles.container} key={item?._id}>
             <View>
                 <Image
                     style={styles.image}
-                    source={{ uri: item?.product?.Image }}
+                    source={{ uri: item?.Image }}
                 />
                 <View style={styles.card}>
-                    <Text style={styles.text1}>{item?.product?.Address}</Text>
-                    <Text style={styles.text1}>{item?.product?.Title}</Text>
-                    <Text style={styles.text}>$ {item?.product?.price}</Text>
-                    <Text style={styles.text2}>{item?.product?.inStock}</Text>
+                    <Text style={styles.text1}>{item?.Address}</Text>
+                    <Text style={styles.text1}>{item?.Title}</Text>
+                    <Text style={styles.text}>$ {item?.price}</Text>
+                    <Text style={styles.text2}>{item?.inStock}</Text>
                 </View>
                 <View style={styles.desc}>
-                    <Text style={styles.text1}>{item?.product?.Description}</Text>
+                    <Text style={styles.text1}>{item?.Description}</Text>
                 </View>
                 <View style={styles.addtocart}>
                     <TouchableOpacity onPress={handleClick}>

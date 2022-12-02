@@ -6,37 +6,27 @@ import { useSelector } from "react-redux";
 
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
-    console.log(cart.quantity)
-    const [quantity, setQuantity] = useState(1)
-    //const image = route.params.image
-    //const price = route.params.price
-    // console.log(image, price);
-    // const total = price * 2
-    const handleQuantity = (type) => {
-        if (type === "dec") {
-            quantity >= 1 && setQuantity(quantity - 1)
-        } else {
-            setQuantity(quantity + 1)
-        }
-    }
+    console.log(cart)
+
+
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of:{cart.total} total on this order</Text>
+                <Text style={styles.total}>You save total of: total on this order</Text>
             </View>
             <FlatList
                 data={cart}
-                keyExtractor={(item, index) => item._id}
+                keyExtractor={(item, index) => item.product._id}
                 renderItem={({ item }) => {
                     <View style={styles.preCont}>
                         <View style={styles.listItem}>
                             <View style={styles.body}>
                                 <View style={styles.rightContainer} >
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>{item.Title}</Text>
+                                        <Text style={styles.text}>{item.product.Title}</Text>
                                     </View>
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>$ {item.price}</Text>
+                                        <Text style={styles.text}>$ {item.product.price}</Text>
                                     </View>
                                     <View style={styles.textComp}>
                                         <Text style={styles.text}>size:5</Text>
@@ -48,17 +38,17 @@ const CartItems = ({ navigation }) => {
                                     resizeMode='contain'
                                     style={styles.image}
                                     source={{
-                                        uri: item.Image
+                                        uri: item.product.Image
                                     }}
                                 />
                             </View>
                         </View>
                         <View style={styles.iconCont}>
-                            <TouchableOpacity onPress={() => handleQuantity("inc")}>
+                            <TouchableOpacity >
                                 <Entypo name="plus" size={24} color="black" />
                             </TouchableOpacity>
-                            <Text style={styles.quantity}>{quantity}</Text>
-                            <TouchableOpacity onPress={() => handleQuantity('dec')}>
+                            <Text style={styles.quantity}>2</Text>
+                            <TouchableOpacity >
                                 <AntDesign name="minus" size={24} color="black" />
                             </TouchableOpacity>
                         </View>

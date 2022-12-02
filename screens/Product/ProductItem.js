@@ -7,8 +7,6 @@ import { publicRequest } from "../../RequestMethod";
 const ProductItem = ({ route }) => {
     const id = route.params.id
     const [item, setitem] = useState([])
-    const quantity = 3
-    const  total = item?.product?.price * quantity;
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,8 +22,8 @@ const ProductItem = ({ route }) => {
     }, [])
     //  console.log(item);
     const handleClick = () =>{
-     const  v = dispatch(addProduct({...item,total,quantity}))
-     console.log(v);
+     dispatch(addProduct(item))
+    //  console.log(v);
     }
     // console.log(item);
     return (

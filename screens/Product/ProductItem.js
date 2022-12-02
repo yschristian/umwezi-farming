@@ -1,4 +1,4 @@
-import axios from "axios";import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../Redux/CartRedux";
@@ -7,6 +7,8 @@ import { publicRequest } from "../../RequestMethod";
 const ProductItem = ({ route }) => {
     const id = route.params.id
     const [item, setitem] = useState([])
+    const quantity = 3
+    const  total = item?.product?.price * quantity;
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,13 +22,14 @@ const ProductItem = ({ route }) => {
         }
         getOne()
     }, [])
-    // console.log(item.product.Address);
+    //  console.log(item);
     const handleClick = () =>{
-        dispatch(addProduct(item.product))
+     const  v = dispatch(addProduct({...item,total,quantity}))
+     console.log(v);
     }
     // console.log(item);
     return (
-        <View style={styles.container}>
+        <View style={styles.container} key={item?.product?._id}>
             <View>
                 <Image
                     style={styles.image}

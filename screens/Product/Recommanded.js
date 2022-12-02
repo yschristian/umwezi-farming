@@ -7,6 +7,7 @@ import axios from "axios";
 const Recommanded = () => {
     const navigation = useNavigation()
     const [products, setProducts] = useState([])
+    
     const getProduct = async () => {
         try {
             const res = await axios.get("https://umwezi-farming-api.vercel.app/product/All")

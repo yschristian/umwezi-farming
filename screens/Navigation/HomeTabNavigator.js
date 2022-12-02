@@ -2,10 +2,11 @@ import { React } from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, AntDesign, Ionicons,Feather } from '@expo/vector-icons';
 import Home from "../Home/Home";
-import Login from "../User/Login/Login";
 import { StyleSheet } from "react-native";
 import CartItems from "../Cart/CartItem";
 import Request from "../User/Request/Request";
+import {View} from "react-native"
+import CartIcon from "../Cart/CartIcon.js";
 
 const Tab = createBottomTabNavigator()
 
@@ -27,7 +28,10 @@ const HomeTabNavigator = () => {
                 component={CartItems}
                 options={{
                     tabBarIcon: (color) => (
+                    <View>
+                        <CartIcon/>
                         <AntDesign style={styles.icon} name="shoppingcart" size={28} color={color} />
+                    </View>
                     )
                 }}
             />

@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+// const initialState =
 const cartSlice = createSlice({
     name: "cart",
-    initialState,
-    // products:[],
-    // quantity:0,
-    // total:0
+    initialState: {
+        cart: []
+    },
+
     reducers: {
         // addProduct:(state,action)=>{
         //     // state.quantity += 1;
@@ -14,54 +14,63 @@ const cartSlice = createSlice({
         //     // state.total += action.payload.product?.price * action.payload.quantity;
 
         // }
-        addProduct: (state, { payload }) => {
-            const { id } = payload
-            console.log(id);
-            const find = state.find(item => item.id === id)
-            if (find) {
-                return state.map(
-                    item => item.id === id ? {
-                        ...item,
-                        quantity: item.quantity + 1
+        addProduct: (state, action) => {
+            // console.log(action.payload.product._id)
+            const { _id } = action.payload.product
+            // console.log(_id);
+            // console.log(state.cart);
+            const finds = state.cart.find(item => item.product._id === _id)
+            //  console.log(finds);
+            if (finds) {
+                // state.cart = state.cart.map(item => item.product._id === _id ? {
+                //         ...item,
+                //         quantity: item.quantity + 1
+                //     }
+                //         : item
+                // )
+                state.cart = state.cart.map(item => {
+                    if (item.product._id === _id) {
+                        return {
+                            ...item,
+                            quantity: item.quantity += 1
+                        }
                     }
-                        : item
-                )
-            } else {
-                state.push({
-                    ...payload,
-                    quantity: 1,
+                    else {
+                        return item
+                    }
                 })
-            }
+            } 
+            
 
         },
-        increment(state, { payload }) {
-            return state.map((item) =>
-              item.id === payload
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                  }
-                : item
-            );
-          },
-          decrement(state, { payload }) {
-            return state.map((item) =>
-              item.id === payload
-                ? {
-                    ...item,
-                    quantity: item.quantity - 1,
-                  }
-                : item
-            );
-          },
-          removeItem: (state, action) => {
-            //   console.log(state);
-            const itemId = action.payload;
-            return state.filter((item) => item.id !== itemId);
-          },
-          clear(state) {
-            return [];
-          },
+        // increment(state, { payload }) {
+        //     return state.map((item) =>
+        //       item.id === payload
+        //         ? {
+        //             ...item,
+        //             quantity: item.quantity + 1,
+        //           }
+        //         : item
+        //     );
+        //   },
+        //   decrement(state, { payload }) {
+        //     return state.map((item) =>
+        //       item.id === payload
+        //         ? {
+        //             ...item,
+        //             quantity: item.quantity - 1,
+        //           }
+        //         : item
+        //     );
+        //   },
+        //   removeItem: (state, action) => {
+        //     //   console.log(state);
+        //     const itemId = action.payload;
+        //     return state.filter((item) => item.id !== itemId);
+        //   },
+        //   clear(state) {
+        //     return [];
+        //   },
     }
 })
 

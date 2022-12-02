@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
-    console.log(cart);
-    const [quantity, setQuantity] = useState(0)
+    console.log(cart.quantity)
+    const [quantity, setQuantity] = useState(1)
     //const image = route.params.image
     //const price = route.params.price
     // console.log(image, price);
@@ -20,12 +20,12 @@ const CartItems = ({ navigation }) => {
         }
     }
     return (
-        <View style={styles.container}>
+        <View style={styles.container} >
             <View style={styles.orderTotal}>
                 <Text style={styles.total}>You save total of:{cart.total} total on this order</Text>
             </View>
             <FlatList
-                data={cart.products}
+                data={cart}
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => {
                     <View style={styles.preCont}>
@@ -33,7 +33,7 @@ const CartItems = ({ navigation }) => {
                             <View style={styles.body}>
                                 <View style={styles.rightContainer} >
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>{item.products?.Title}</Text>
+                                        <Text style={styles.text}>{item.Title}</Text>
                                     </View>
                                     <View style={styles.textComp}>
                                         <Text style={styles.text}>$ {item.price}</Text>

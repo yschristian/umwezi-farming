@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
+import { calcTotal } from "../../utils/total";
 
 
 const CartItems = ({ navigation }) => {
@@ -11,7 +12,7 @@ const CartItems = ({ navigation }) => {
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of: total on this order</Text>
+                <Text style={styles.total}>You save total of: {calcTotal(cart)} total on this order</Text>
             </View>
             {/* <Text>{cart[0].product.Title}</Text> */}
             <Text>bbbcxzczx</Text>

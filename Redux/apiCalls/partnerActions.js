@@ -1,7 +1,7 @@
 import { publicRequest } from "../../RequestMethod";
 import { addPartnerStart, addPartnerSuccess, addPartnerFailure } from "../PartnerRedux";
 
-export const addPartner = async (partner,dispatch)=>{
+export const addPartner = async (dispatch,partner)=>{
     dispatch(addPartnerStart())
     try {
         const res = await publicRequest.post("/request/create", partner)

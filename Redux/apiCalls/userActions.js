@@ -33,7 +33,7 @@ export const deleteUser = async (id, dispatch) => {
         dispatch(deleteUserFailled())
     }
 }
-export const addUser = async (user, dispatch) => {
+export const addUser = async (dispatch,user) => {
     dispatch(addUserStart())
     try {
         const res = await publicRequest.post("/user/create", user)

@@ -1,6 +1,6 @@
-import React ,{useState}from "react";
-import { Text, View,ScrollView, TextInput, TouchableOpacity } from "react-native";
-import {Picker as SelectPicker} from '@react-native-picker/picker' 
+import React, { useState } from "react";
+import { Text, View, ScrollView, TextInput, TouchableOpacity } from "react-native";
+import { Picker as SelectPicker } from '@react-native-picker/picker'
 import styles from "./styles";
 import { addPartner } from "../../../Redux/apiCalls/partnerActions";
 import { useDispatch } from "react-redux";
@@ -8,17 +8,18 @@ import { useDispatch } from "react-redux";
 
 const Request = () => {
     const [work, setWork] = useState("");
-    
-    const [FirstName, setFirstName] = useState("")
-    const [LastName, setLastName] = useState("")
-    const [desc, setDesc]= useState("")
+    const [Firstname, setFirstname] = useState("")
+    const [Lastname, setLastname] = useState("")
+    const [Description, setDescription] = useState("")
     const [Email, setEmail] = useState("")
     const dispatch = useDispatch()
     // console.log(Email,work,FirstName,LastName,desc);
 
-    const createPartner = () =>{
+    const createPartner = () => {
         try {
-            addPartner(dispatch,work,Email,FirstName,LastName,desc)
+            addPartner(dispatch, { work, Email, Firstname, Lastname, Description })
+            setFirstname("")
+            setLastname("")
         } catch (error) {
             console.log(error);
         }
@@ -32,13 +33,13 @@ const Request = () => {
             <View style={styles.userRequest}>
                 <TextInput
                     style={styles.requestText}
-                    placeholder="First Name"
-                    onChangeText={(value) => setFirstName(value)}
+                    placeholder="FirstName"
+                    onChangeText={(value) => setFirstname(value)}
                 />
                 <TextInput
                     style={styles.requestText}
-                    placeholder="Last Name"
-                    onChangeText={(value) => setLastName(value)}
+                    placeholder="LastName"
+                    onChangeText={(value) => setLastname(value)}
                 />
                 <TextInput
                     style={styles.requestText}
@@ -47,16 +48,16 @@ const Request = () => {
                 />
                 <Text style={styles.optionTitle}>What you do?</Text>
                 <SelectPicker
-                selectedValue={work}
-                onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
-                 style={styles.selectPicker}>
+                    selectedValue={work}
+                    onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
+                    style={styles.selectPicker}>
                     <SelectPicker.Item style={styles.item} label="Farmer" value="farmer" />
                     <SelectPicker.Item style={styles.item} label="SalesPesron" value="salesPerson" />
                 </SelectPicker>
                 <TextInput
                     style={styles.requestText}
                     placeholder="Decription"
-                    onChangeText={(value) => setDesc(value)}
+                    onChangeText={(value) => setDescription(value)}
                 />
                 <TouchableOpacity style={styles.button} onPress={createPartner}>
                     <Text style={styles.buttonText}>REQUEST</Text>

@@ -2,33 +2,33 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
-import { calcTotal } from "../../utils/total";
+// import { calcTotal } from "../../utils/total"
 
 
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
-    console.log('cart',cart)
+    console.log( cart)
 
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of: {calcTotal(cart)} total on this order</Text>
+                <Text style={styles.total}>You save total of:  total on this order</Text>
             </View>
-            {/* <Text>{cart[0].product.Title}</Text> */}
+            <Text>{cart.cart.Title}</Text>
             <Text>bbbcxzczx</Text>
-            <FlatList
+            {/* <FlatList
                 data={cart}
-                keyExtractor={(item, index) => item.product._id}
+                keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => {
                     <View style={styles.preCont}>
                         <View style={styles.listItem}>
                             <View style={styles.body}>
                                 <View style={styles.rightContainer} >
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>{item.product.Title}</Text>
+                                        <Text style={styles.text}>{item.Title}</Text>
                                     </View>
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>$ {item.product.price}</Text>
+                                        <Text style={styles.text}>$ {item.price}</Text>
                                     </View>
                                     <View style={styles.textComp}>
                                         <Text style={styles.text}>size:5</Text>
@@ -56,7 +56,7 @@ const CartItems = ({ navigation }) => {
                         </View>
                     </View>
                 }}
-            />
+            /> */}
             <View>
                 <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>

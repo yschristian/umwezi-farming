@@ -14,6 +14,9 @@ const Register = () => {
 
     const createUser = () => {
         addUser(dispatch, {username, email, password})
+        setUsername("")
+        setEmail("")
+        setPassword("")
     }
     return (
         <ScrollView style={styles.container}>

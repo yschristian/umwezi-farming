@@ -3,11 +3,12 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Recommanded = () => {
     const navigation = useNavigation()
     const [products, setProducts] = useState([])
-    
+    const cart = useSelector(state => state.cart)
     const getProduct = async () => {
         try {
             const res = await axios.get("https://umwezi-farming-api.vercel.app/product/All")

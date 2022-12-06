@@ -7,19 +7,18 @@ import { useSelector } from "react-redux";
 
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
-    console.log( cart)
-
+    // console.log(cart.cart)
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
                 <Text style={styles.total}>You save total of:  total on this order</Text>
             </View>
-            <Text>{cart.cart.Title}</Text>
-            <Text>bbbcxzczx</Text>
-            {/* <FlatList
-                data={cart}
+            {/* <Text>{cart.quantity}</Text>
+            <Text>bbbcxzczx</Text> */}
+            <FlatList
+                data={cart.cart}
                 keyExtractor={(item, index) => item._id}
-                renderItem={({ item }) => {
+                renderItem={({ item }) => (
                     <View style={styles.preCont}>
                         <View style={styles.listItem}>
                             <View style={styles.body}>
@@ -31,7 +30,7 @@ const CartItems = ({ navigation }) => {
                                         <Text style={styles.text}>$ {item.price}</Text>
                                     </View>
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>size:5</Text>
+                                        <Text style={styles.text}>cat: {item.Categories}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -40,7 +39,7 @@ const CartItems = ({ navigation }) => {
                                     resizeMode='contain'
                                     style={styles.image}
                                     source={{
-                                        uri: item.product.Image
+                                        uri: item.Image
                                     }}
                                 />
                             </View>
@@ -49,14 +48,14 @@ const CartItems = ({ navigation }) => {
                             <TouchableOpacity >
                                 <Entypo name="plus" size={24} color="black" />
                             </TouchableOpacity>
-                            <Text style={styles.quantity}>2</Text>
+                            <Text style={styles.quantity}>{item.quantity}</Text>
                             <TouchableOpacity >
                                 <AntDesign name="minus" size={24} color="black" />
                             </TouchableOpacity>
                         </View>
                     </View>
-                }}
-            /> */}
+                )}
+            />
             <View>
                 <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>

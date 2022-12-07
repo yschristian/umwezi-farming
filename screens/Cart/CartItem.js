@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
-// import { calcTotal } from "../../utils/total"
+import {calcTotal} from "../../utils/total"
 
 
 const CartItems = ({ navigation }) => {
@@ -11,10 +11,8 @@ const CartItems = ({ navigation }) => {
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of:  total on this order</Text>
+                <Text style={styles.total}>You save total of:{calcTotal(cart.cart)}  total on this order</Text>
             </View>
-            {/* <Text>{cart.quantity}</Text>
-            <Text>bbbcxzczx</Text> */}
             <FlatList
                 data={cart.cart}
                 keyExtractor={(item, index) => item._id}
@@ -30,7 +28,7 @@ const CartItems = ({ navigation }) => {
                                         <Text style={styles.text}>$ {item.price}</Text>
                                     </View>
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>cat: {item.Categories}</Text>
+                                        <Text style={styles.text}>{item.Categories}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -56,7 +54,7 @@ const CartItems = ({ navigation }) => {
                     </View>
                 )}
             />
-            <View>
+            <View style={styles.checkoutButton}>
                 <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
@@ -143,7 +141,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         justifyContent: "center",
         alignItems: "center"
-    }
-
-
+    },
 })

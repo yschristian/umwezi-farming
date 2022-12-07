@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../Redux/CartRedux";
 import { publicRequest } from "../../RequestMethod";
 
-const ProductItem = ({ route }) => {
+const ProductItem = ({ route,navigation }) => {
     const id = route.params.id
     const [item, setitem] = useState([])
     const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const ProductItem = ({ route }) => {
     //  console.log(item);
     const handleClick = () =>{
      dispatch(addProduct(item))
+     navigation.navigate("Cart")
     //  console.log(v);
     }
     // console.log(item);

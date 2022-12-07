@@ -41,7 +41,7 @@ const Recommanded = () => {
                                 <Text style={styles.text1}>{item.Title}</Text>
                                 <Text style={styles.text}>$ {item.price}</Text>
                                 {/* <Text style={styles.text}>{item.inStock}</Text> */}
-                                <TouchableOpacity onPress={() => navigation.navigate("Cart", { id: item.id, image: item.image, price: item.price })}>
+                                <TouchableOpacity onPress={() => navigation.navigate("Cart", { id: item.id, image: item.Image, price: item.price })}>
                                     <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
                                 </TouchableOpacity>
                             </View>

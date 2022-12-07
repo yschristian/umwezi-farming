@@ -5,3 +5,11 @@ export function calcTotal (cart) {
     });
     return t;
 }
+export function itemTotal(price){
+    
+    price.forEach(item=>{
+        var total = item.price * item.quantity
+        return total
+    })
+   
+}

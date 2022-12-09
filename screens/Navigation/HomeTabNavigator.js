@@ -33,7 +33,7 @@ const HomeTabNavigator = () => {
                     ),
                     headerRight: () => (
                         <View style={styles.multipleIcon}>
-                            <TouchableOpacity style={{ marginLeft: 10 }} >
+                            <TouchableOpacity style={{ marginLeft: 10 }} onPress={() => navigation.navigate('Search')}>
                                 <Ionicons name="search" size={24} color="black" />
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
@@ -73,7 +73,7 @@ const HomeTabNavigator = () => {
                     headerRight: () => (
                         <View style={styles.multipleIcon}>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
-                                <Ionicons name="search" size={24} color="black" />
+                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')}/>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
                                 <Ionicons name="notifications-outline" size={24} color="black" />
@@ -107,7 +107,7 @@ const HomeTabNavigator = () => {
                     headerRight: () => (
                         <View style={styles.multipleIcon}>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
-                                <Ionicons name="search" size={24} color="black" />
+                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')}/>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
                                 <Ionicons name="notifications-outline" size={24} color="black" />

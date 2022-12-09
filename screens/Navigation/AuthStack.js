@@ -28,13 +28,14 @@ const AuthStack = () => {
                 options={{
                     drawerIcon: ({ color }) => (
                         <Feather name="package" size={24} color={color} />
-                    )
+                    ),
                 }}
             />
             <Drawer.Screen name="Product" component={Product}
                 options={{
                     drawerIcon: ({ color }) => (
                         <FontAwesome name="product-hunt" size={24} color={color} />
+
                     )
                         
                 }}

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Text, View, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../Redux/apiCalls/userActions";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const Register = () => {
     const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation()
-
+    
     const createUser = () => {
         addUser(dispatch, {username, email, password})
         setUsername("")
@@ -38,6 +39,7 @@ const Register = () => {
                 <TextInput
                     style={styles.requestText}
                     placeholder="Password"
+                    secureTextEntry={true}
                     onChangeText={(value) => setPassword(value)}
                 />
                 <TouchableOpacity style={styles.button} onPress={createUser}>

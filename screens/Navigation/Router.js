@@ -16,7 +16,7 @@ const Stack = createStackNavigator()
 const Router = () => {
     return (
         <NavigationContainer>
-             <Stack.Navigator>
+             <Stack.Navigator >
              <Stack.Screen
                 name={'AuthStack'}
                 component={AuthStack}

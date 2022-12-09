@@ -8,7 +8,7 @@ const Order = () => {
             <View style={styles.ordermessage}>
 
                 <Text style={{ fontSize: 15 }}>no Records Found!</Text>
-                <TouchableOpacity onPress={Navigation.navigate("Recommanded")}>
+                <TouchableOpacity onPress={()=>Navigation.navigate("Recommanded")}>
                     <Text style={styles.textbutton}>Shop Now</Text>
                 </TouchableOpacity>
             </View>

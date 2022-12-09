@@ -33,7 +33,7 @@ const ProfileTabNavigator = () => {
                 name={'Profile'}
                 component={UserProfile}
                 options={{
-                    tabBarIcon: (color) => (
+                    tabBarIcon: ({color}) => (
                         <Ionicons style={styles.icon} name="person" size={28} color={color} />
                     )
                 }}

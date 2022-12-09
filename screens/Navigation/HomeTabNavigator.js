@@ -12,22 +12,23 @@ const Tab = createBottomTabNavigator()
 
 const HomeTabNavigator = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator style={styles.icons}>
             <Tab.Screen
                 name={'Home'}
                 component={Home}
                 options={{
-                    tabBarIcon: (color) => (
+                    tabBarIcon: ({color}) => (
                         <FontAwesome style={styles.icon} name="home" size={28} color={color} />
                     ),
                 }}
+                
             />
 
             <Tab.Screen
                 name={'Cart'}
                 component={CartItems}
                 options={{
-                    tabBarIcon: (color) => (
+                    tabBarIcon: ({color}) => (
                     <View>
                         <CartIcon/>
                         <AntDesign style={styles.icon} name="shoppingcart" size={28} color={color} />
@@ -40,16 +41,17 @@ const HomeTabNavigator = () => {
                 name={'Request'}
                 component={Request}
                 options={{
-                    tabBarIcon: (color) => (
+                    tabBarIcon: ({color}) => (
                         <Ionicons style={styles.icon} name="person" size={28} color={color} />
                     )
                 }}
             />
              <Tab.Screen
                 name={'Settings'}
+                style={styles.icons}
                 component={Home}
                 options={{
-                    tabBarIcon: (color) => (
+                    tabBarIcon: ({color}) => (
                         <Feather name="settings" style={styles.icon} size={28} color={color} />
                     )
                 }}
@@ -63,6 +65,6 @@ export default HomeTabNavigator
 
 const styles = StyleSheet.create({
     icon: {
-        color: "green"
+        color: "green",
     }
 })

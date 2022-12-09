@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
-import {calcTotal} from "../../utils/total"
+import { calcTotal } from "../../utils/total"
 
 
 const CartItems = ({ navigation }) => {
@@ -13,7 +13,7 @@ const CartItems = ({ navigation }) => {
             <View style={styles.orderTotal}>
                 <Text style={styles.total}>You save total of:{calcTotal(cart.cart)}  total on this order</Text>
             </View>
-            <FlatList
+         <FlatList
                 data={cart.cart}
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
@@ -25,7 +25,7 @@ const CartItems = ({ navigation }) => {
                                         <Text style={styles.text}>{item.Title}</Text>
                                     </View>
                                     <View style={styles.textComp}>
-                                        <Text style={styles.text}>$ {item.price}</Text>
+                                        <Text style={styles.text}>$ {item.price * item.quantity}</Text>
                                     </View>
                                     <View style={styles.textComp}>
                                         <Text style={styles.text}>{item.Categories}</Text>
@@ -53,7 +53,7 @@ const CartItems = ({ navigation }) => {
                         </View>
                     </View>
                 )}
-            />
+            /> 
             <View style={styles.checkoutButton}>
                 <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
                     <Text style={styles.checkout}>Checkout</Text>

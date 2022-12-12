@@ -21,6 +21,7 @@ const Recommanded = () => {
         getProduct()
     }, [])
     // console.log(products);
+    
     return (
         <View style={styles.container}>
             <FlatList

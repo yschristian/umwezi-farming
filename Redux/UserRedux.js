@@ -1,90 +1,95 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-    name:"user",
-    initialState:{
+    name: "user",
+    initialState: {
         currentUser: null,
         isFetching: false,
-        error:false,
-        users:[]
+        error: false,
+        users: []
     },
 
-    reducers:{
-        loginStart:(state)=>{
+    reducers: {
+        loginStart: (state) => {
             state.isFetching = true
         },
-        loginSuccess:(state,action)=>{
+        loginSuccess: (state, action) => {
             state.isFetching = false;
             state.currentUser = action.payload
         },
-        loginFalure:(state)=>{
+        loginFalure: (state) => {
             state.isFetching = false;
             state.error = true
         },
 
         //GET USERS
-        getUserStart: (state) =>{
+        getUserStart: (state) => {
             state.isFetching = true;
-            state.error =false
+            state.error = false
         },
-        getUserSuccess: (state,action) =>{
+        getUserSuccess: (state, action) => {
             state.isFetching = false;
             state.users = action.payload
         },
-       getUserFailled : (state) =>{
+        getUserFailled: (state) => {
             state.isFetching = false;
             state.error = true
-       },
+        },
 
-       //DELETE USER
+        //DELETE USER
 
-       deleteUserStart: (state) =>{
+        deleteUserStart: (state) => {
             state.isFetching = true;
             state.error = false
-       },
-       deleteUserSuccess: (state,action) =>{
-        state.isFetching = false;
-        state.users.splice(
-            state.users.findIndex((item) => item._id === action.payload.id),1
-        )
         },
-        deleteUserFailled : (state) =>{
+        deleteUserSuccess: (state, action) => {
+            state.isFetching = false;
+            state.users.splice(
+                state.users.findIndex((item) => item._id === action.payload.id), 1
+            )
+        },
+        deleteUserFailled: (state) => {
             state.isFetching = false;
             state.error = true
         },
         //ADD USER
 
-        addUserStart: (state) =>{
+        addUserStart: (state) => {
             state.isFetching = true;
             state.error = false
         },
-        addUserSuccess:(state, action) =>{
+        addUserSuccess: (state, action) => {
             state.isFetching = false;
             state.users.push(action.payload)
         },
-        addUserFailled:(state) =>{
+        addUserFailled: (state) => {
             state.isFetching = false;
             state.error = true
-        }
+        },
         //LOGOUT
-        
+        logout: (state) => {
+            state.currentUser = '',
+                state.isFetching = false;
+        }
+
     }
 
 })
 
-export const { 
-      loginStart,
-      loginSuccess,
-      loginFalure,
-      getUserStart,
-      getUserSuccess,
-      getUserFailled ,
-      deleteUserStart,
-      deleteUserSuccess,
-      deleteUserFailled,
-      addUserStart,
-      addUserSuccess,
-      addUserFailled,
+export const {
+    logout,
+    loginStart,
+    loginSuccess,
+    loginFalure,
+    getUserStart,
+    getUserSuccess,
+    getUserFailled,
+    deleteUserStart,
+    deleteUserSuccess,
+    deleteUserFailled,
+    addUserStart,
+    addUserSuccess,
+    addUserFailled,
 
-    } = userSlice.actions
+} = userSlice.actions
 export default userSlice.reducer

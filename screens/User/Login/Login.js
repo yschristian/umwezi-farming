@@ -22,7 +22,7 @@ const Login = () => {
             Alert.alert('Please fill in your credentials');
         }
         login(dispatch, { email, password })
-        // setIsOnline(true)
+        navigation.navigate("AuthStack")
     }
     return (
         <ScrollView style={styles.container}>

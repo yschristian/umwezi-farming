@@ -38,16 +38,18 @@ const cartSlice = createSlice({
             
 
         },
-        // increment(state, { payload }) {
-        //     return state.map((item) =>
-        //       item.id === payload
-        //         ? {
-        //             ...item,
-        //             quantity: item.quantity + 1,
-        //           }
-        //         : item
-        //     );
-        //   },
+        increment(state,  action ) {
+            const product = action.payload
+            return state.cart.map((item) =>
+              item._id === product.payload
+                ? {
+                    ...item,
+                    quantity: item.quantity + 1,
+                  }
+                : item
+            );
+            
+          },
         //   decrement(state, { payload }) {
         //     return state.map((item) =>
         //       item.id === payload
@@ -69,5 +71,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct,increment } = cartSlice.actions;
 export default cartSlice.reducer

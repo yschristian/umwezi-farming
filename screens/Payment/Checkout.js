@@ -1,59 +1,63 @@
-import {View, Text ,Image ,StyleSheet,TextInput,ScrollView,Pressable} from "react-native"
-import {Dimensions} from "react-native"
-const Checkout =()=>{
-    return(
+import { useStripe } from '@stripe/stripe-react-native';
+import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { publicRequest } from '../../RequestMethod';
 
-        <ScrollView>
-            {/* <Text
-                style={styles.text}
-            >Login To Your Account
-            </Text> */}
-            <View style={styles.userLogin}>
-                <TextInput
-                    style={styles.userText}
-                    placeholder="Your Email"
-                />
-                <TextInput
-                    style={styles.userText}
-                    placeholder="Type your Password"
-                />
-                <Pressable style={styles.button} onPress={()=> navigation.navigate("Profile") }>
-                    <Text style={styles.buttonText}>LOGIN</Text>
-                </Pressable>
-                <View style={styles.row}>
-                    <Text>
-                        Are you Our Patner? if not ,
-                    </Text>
-                    <Pressable onPress={()=> navigation.navigate("Request")}>
-                        <Text style={styles.textRequest}>Request</Text>
-                    </Pressable>
-                    
-                </View>
-                <Pressable style={styles.butn}>
-                    <Text style={styles.forgotButton}>Forgot Password?</Text>
-                </Pressable>
-            </View>
-        </ScrollView>
-    )
+
+const Checkout = ({total}) => {
+    const [name, setName] = useState('');
+    const [amount] = useState(total);
+    const { initPaymentSheet, presentPaymentSheet } = useStripe();
+     
+    const subscribe = async () => {
+        
+        try {
+            // console.log("gs",amount);
+            const res = await publicRequest.post("/checkout/pay", { name, amount })
+            const data = await res.data;
+            console.log(data)
+            const { clientSecret } = data;
+            console.log(clientSecret)
+            const initSheet = await initPaymentSheet({
+                merchantDisplayName: "Umwezi Farms",
+                paymentIntentClientSecret: clientSecret,
+                defaultBillingDetails: {
+                    name: 'Jane Doe',
+                }
+            });
+            if (initSheet.error) return Alert.alert(initSheet.error.message);
+            const openPaymentSheet = await presentPaymentSheet({ clientSecret });
+            if (openPaymentSheet.error) return Alert.alert(openPaymentSheet.error.message);
+            const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",
+                {
+                    products: products,
+                    amount: amount
+                }
+            );
+            const ordersData = order.data;
+            // console.log(ordersData)
+        } catch (error) {
+            // console.log(error.message);
+        }
+    }
+    return (
+        <View>
+            <TextInput
+                style={styles.userText}
+                placeholder="name"
+                value={name}
+                onChangeText={(text) => setName(text)}
+            />
+            <Button title="Checkout" variant="primary" onPress={subscribe} />
+        </View>
+    );
 }
+
 export default Checkout
 
 const styles = StyleSheet.create({
-    container:{
-       // backgroundColor: "#8cd98c",
-        width:"100%",
-        height:"100%"
-    },
-    userRequest:{
-        marginVertical:100,
-        justifyContent:'center',
-        alignItems:"center", 
-        borderRadius:23,
-        marginHorizontal:10,
-        width:Dimensions.get('screen').width - 20,
-    },
-    requestText:{
-        width: '80%',
+    userText: {
+        width: '90%',
         height: 60,
         backgroundColor: 'white',
         margin: 10,
@@ -62,39 +66,5 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#8cd98c',
     },
-    button:{
-        width:"80%",
-        height:40,
-        margin:20,
-        borderRadius:15,
-        alignItems:'center',
-        justifyContent:"center",
-        backgroundColor:"#8cd98c"
-    },
-    buttonText:{
-        color:"white",
-        fontWeight:"bold",
-        fontSize:20
-    },
-    text:{
-        color: "#8cd98c",
-        textAlign:"center",
-        marginTop:100,
-        fontWeight:"bold",
-        fontSize:30,
-        },
-    selectPicker:{
-        width: 100,
-        height:50
-        },
-    optionTitle:{
-        color:"#8cd98c",
-        fontWeight:"bold",
-        fontSize:30,
-    },
-    item:{
-       padding: 12 
-    }
 })
-
 

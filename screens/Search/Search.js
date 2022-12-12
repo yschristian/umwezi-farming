@@ -1,8 +1,10 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { View, TextInput, StyleSheet, Dimensions } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 
 const Search = () => {
+    const [products ,setProducts] = useState('')
+    
     return (
         <View style={styles.searchContainer}>
             <Ionicons name="search" size={24} color="black" style={styles.icon}/>

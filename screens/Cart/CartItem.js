@@ -57,7 +57,7 @@ const CartItems = ({ navigation }) => {
                 )}
             />
             <View style={styles.checkoutButton}>
-                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount })}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount, cart:cart.cart })}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

@@ -1,21 +1,28 @@
-import React, { useState } from "react";
-import { Text, View, ScrollView, TextInput, TouchableOpacity, Pressable } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, ScrollView, Alert, TextInput, TouchableOpacity, Pressable } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { login } from "../../../Redux/apiCalls/userActions";
-
-
 
 const Login = () => {
     const navigation = useNavigation()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
-    
+    const [isOnline, setIsOnline] = useState(false)
+    // useEffect(() => {
+    //     if (isOnline) {
+    //         navigation.navigate("AuthStack")
+    //     }
+    // }, [isOnline])
+
     const loginUser = () => {
+        if (email === '' || password === '') {
+            Alert.alert('Please fill in your credentials');
+        }
         login(dispatch, { email, password })
-        navigation.navigate("AuthStack")
+        // setIsOnline(true)
     }
     return (
         <ScrollView style={styles.container}>
@@ -35,7 +42,7 @@ const Login = () => {
                     secureTextEntry={true}
                     onChangeText={(value) => setPassword(value)}
                 />
-                <TouchableOpacity style={styles.button} onPress={ loginUser }>
+                <TouchableOpacity style={styles.button} onPress={loginUser}>
                     <Text style={styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity>
                 <View style={styles.row}>

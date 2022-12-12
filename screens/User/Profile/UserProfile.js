@@ -71,9 +71,9 @@ const UserProfile = () => {
         <Pressable style={styles.butn} onPress={() => setModalVisible(!modalVisible)}>
           <Text style={styles.changeButton}>Change profile</Text>
         </Pressable>
-        <Pressable style={styles.button}>
+        {/* <Pressable style={styles.button}>
           <Text style={styles.changeButton}>LOG OUT</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     </ScrollView>
   )

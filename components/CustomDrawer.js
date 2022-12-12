@@ -2,8 +2,15 @@ import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity } from
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer"
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+
+
+
+
 
 const CustomDrawer = (props) => {
+    const user = useSelector((state)=> state.user.currentUser)
+    // console.log(user);
     const navigation= useNavigation()
     return (
         <View style={{ flex: 1 }}>
@@ -16,9 +23,12 @@ const CustomDrawer = (props) => {
                         source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
                         style={{ height: 80, width: 80, borderRadius: 40, marginBottom: 10 }}
                     />
-                    <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+                     {user ? <Text style={{color:"blue",fontSize: 18}}>Welcome: {user.user.username} </Text> : <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
                         <Text style={{ color: "black", fontSize: 18 }}>Login/Register</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>} 
+                    {/* <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+                        <Text style={{ color: "black", fontSize: 18 }}>Login/Register</Text>
+                    </TouchableOpacity> */}
 
                 </ImageBackground>
                 <View style={{ flex: 1, backgroundColor: "white", paddingTop: 10 }}>

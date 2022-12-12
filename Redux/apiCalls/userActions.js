@@ -8,9 +8,10 @@ export const login = async (dispatch, user) => {
     dispatch(loginStart())
     try {
         const res = await publicRequest.post('/user/login', user)
+        const jsonValue = JSON.stringify(res.data);
+        console.log(jsonValue);
+        await AsyncStorage.setItem("umwezi",jsonValue);
         dispatch(loginSuccess(res.data))
-        const jsonValue = JSON.stringify(res);
-        await AsyncStorage.setItem(jsonValue);
     } catch (error) {
         dispatch(loginFalure())
     }

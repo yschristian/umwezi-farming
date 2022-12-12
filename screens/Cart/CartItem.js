@@ -9,7 +9,7 @@ const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const amount = calcTotal(cart.cart)
-    //  console.log(amount)
+    //  console.log(cart.cart)
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
@@ -57,7 +57,7 @@ const CartItems = ({ navigation }) => {
                 )}
             />
             <View style={styles.checkoutButton}>
-                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount, cart:cart.cart })}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount, cart:cart.cart.map(product=>({productId:product._id,Quantity:product.quantity})) })}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

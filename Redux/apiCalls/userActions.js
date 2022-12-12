@@ -17,6 +17,9 @@ export const login = async (dispatch, user) => {
     }
 }
 
+export const logout = () => {
+    
+}
 export const getUsers = async (dispatch) => {
     dispatch(getUserStart())
     try {

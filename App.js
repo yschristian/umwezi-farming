@@ -1,14 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import Router from "./screens/Navigation/Router"
 import { Provider } from 'react-redux';
-import store from './Redux/store';
+import {store,persistor} from './Redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 export default function App() {
   return (
     <Provider store={store}>
-      <StatusBar />
-      <Router />
+      <PersistGate loading={null} persistor={persistor}>
+        {/* <StatusBar /> */}
+        <Router />
+      </PersistGate>
     </Provider>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Text, View, ScrollView, TextInput, Pressable } from "react-native";
+import { Text, View, ScrollView, TextInput, TouchableOpacity, Pressable } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { login } from "../../../Redux/apiCalls/userActions";
+
 
 
 const Login = () => {
@@ -34,21 +35,21 @@ const Login = () => {
                     secureTextEntry={true}
                     onChangeText={(value) => setPassword(value)}
                 />
-                <Pressable style={styles.button} onPress={ loginUser }>
+                <TouchableOpacity style={styles.button} onPress={ loginUser }>
                     <Text style={styles.buttonText}>LOGIN</Text>
-                </Pressable>
+                </TouchableOpacity>
                 <View style={styles.row}>
                     <Text>
                         Are you a Member? if not ,
                     </Text>
-                    <Pressable onPress={() => navigation.navigate("Register")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Register")}>
                         <Text style={styles.textRequest}>Signup</Text>
-                    </Pressable>
+                    </TouchableOpacity>
 
                 </View>
-                <Pressable style={styles.butn}>
+                <TouchableOpacity style={styles.butn}>
                     <Text style={styles.forgotButton}>Forgot Password?</Text>
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )

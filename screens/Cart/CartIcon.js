@@ -10,7 +10,7 @@ const CartIcon = () => {
     <>
       {cartItems.length ? (
         <View style={styles.badge}>
-          <Text style={styles.text}>{cartItems.length}</Text>
+          <Text style={styles.text}>{cartItems?.length}</Text>
         </View>
     ) : null}
     </>

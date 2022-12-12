@@ -11,6 +11,7 @@ import Checkout from "../Payment/Checkout";
 import Login from "../User/Login/Login";
 import UserProfile from "../User/Profile/UserProfile";
 import Search from "../Search/Search";
+import Payment from "../Payment/Payment";
 
 const Stack = createStackNavigator()
 
@@ -65,6 +66,10 @@ const Router = () => {
                 <Stack.Screen
                     name={'checkout'}
                     component={Checkout}
+                />
+                <Stack.Screen
+                    name={'Payment'}
+                    component={Payment}
                 />
 
             </Stack.Navigator>

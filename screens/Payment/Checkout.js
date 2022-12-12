@@ -2,13 +2,16 @@ import { useStripe } from '@stripe/stripe-react-native';
 import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { publicRequest } from '../../RequestMethod';
+import { useSelector } from 'react-redux';
 
 
 const Checkout = ({total,products}) => {
     const [name, setName] = useState('');
     const [amount] = useState(total);
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
-    // console.log("gs",products);
+    console.log(products);
+    const user = useSelector((state)=> state.user.currentUser)
+    console.log(user.user._id);
     const subscribe = async () => {
         try {
             const res = await publicRequest.post("/checkout/pay", { name, amount })
@@ -28,14 +31,16 @@ const Checkout = ({total,products}) => {
             if (openPaymentSheet.error) return Alert.alert(openPaymentSheet.error.message);
             const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",
                 {
-                    products: products,
-                    Amount: amount
+                    UserId:user.user._id,
+                    Products: products,
+                    Amount: amount,
+                    Status:"complete"
                 }
             );
-            // const ordersData = order.data;
-            console.log(order)
+            const ordersData = order.data;
+            console.log(ordersData)
         } catch (error) {
-            // console.log(error.message);
+            console.log(error.message);
         }
     }
     return (

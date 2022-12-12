@@ -1,5 +1,6 @@
 import { addUserFailled, addUserStart, addUserSuccess, deleteUserFailled, deleteUserStart, deleteUserSuccess, getUserFailled, getUserStart, getUserSuccess, loginFalure, loginStart, loginSuccess } from "../UserRedux"
 import { publicRequest, userRequest } from "../../RequestMethod"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -8,6 +9,8 @@ export const login = async (dispatch, user) => {
     try {
         const res = await publicRequest.post('/user/login', user)
         dispatch(loginSuccess(res.data))
+        const jsonValue = JSON.stringify(res);
+        await AsyncStorage.setItem(jsonValue);
     } catch (error) {
         dispatch(loginFalure())
     }

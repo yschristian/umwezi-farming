@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { calcTotal } from "../../utils/total"
-
+import { increment } from "../../Redux/CartRedux";
 
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
-    // console.log(cart.cart)
+    const dispatch = useDispatch()
+    const amount = calcTotal(cart.cart)
+    //  console.log(amount)
     return (
         <View style={styles.container} >
             <View style={styles.orderTotal}>
-                <Text style={styles.total}>You save total of:{calcTotal(cart.cart)}  total on this order</Text>
+                <Text style={styles.total}>You save total of:{amount}  total on this order</Text>
             </View>
-         <FlatList
+            <FlatList
                 data={cart.cart}
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
@@ -43,7 +45,7 @@ const CartItems = ({ navigation }) => {
                             </View>
                         </View>
                         <View style={styles.iconCont}>
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={() => dispatch(increment(item._id))}>
                                 <Entypo name="plus" size={24} color="black" />
                             </TouchableOpacity>
                             <Text style={styles.quantity}>{item.quantity}</Text>
@@ -53,9 +55,9 @@ const CartItems = ({ navigation }) => {
                         </View>
                     </View>
                 )}
-            /> 
+            />
             <View style={styles.checkoutButton}>
-                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("checkout")}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount })}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

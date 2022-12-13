@@ -3,7 +3,7 @@ import { Text, View, ScrollView, Alert, TextInput, TouchableOpacity, Pressable }
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { login } from "../../../Redux/apiCalls/userActions";
+import  {login}  from "../../../Redux/apiCalls/userActions";
 
 const Login = () => {
     const navigation = useNavigation()
@@ -17,11 +17,11 @@ const Login = () => {
     //     }
     // }, [isOnline])
 
-    const loginUser = () => {
+    const loginUser = async() => {
         if (email === '' || password === '') {
             Alert.alert('Please fill in your credentials');
         }
-        login(dispatch, { email, password })
+        await login(dispatch, { email, password })
         navigation.navigate("AuthStack")
     }
     return (

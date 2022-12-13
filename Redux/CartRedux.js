@@ -50,9 +50,10 @@ const cartSlice = createSlice({
             );
             
           },
-        //   decrement(state, { payload }) {
-        //     return state.map((item) =>
-        //       item.id === payload
+        //   decrement(state,  action ) {
+        //     const product = action.payload
+        //     return state.cart.map((item) =>
+        //       item._id === product.payload
         //         ? {
         //             ...item,
         //             quantity: item.quantity - 1,

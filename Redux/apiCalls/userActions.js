@@ -1,7 +1,6 @@
-import { addUserFailled, addUserStart, addUserSuccess, deleteUserFailled, deleteUserStart, deleteUserSuccess, getUserFailled, getUserStart, getUserSuccess, loginFalure, loginStart, loginSuccess } from "../UserRedux"
+import { addUserFailled, addUserStart, addUserSuccess, deleteUserFailled, deleteUserStart, deleteUserSuccess, getUserFailled, getUserStart, getUserSuccess, loginFalure, loginStart, loginSuccess,logout } from "../UserRedux"
 import { publicRequest, userRequest } from "../../RequestMethod"
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 
 export const login = async (dispatch, user) => {
@@ -17,8 +16,12 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const logout = () => {
-    
+export const logoutUser = (dispatch) => {
+    try{
+         dispatch(logout())
+    }catch(err){
+        
+    }
 }
 export const getUsers = async (dispatch) => {
     dispatch(getUserStart())

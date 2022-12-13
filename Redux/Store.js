@@ -17,7 +17,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const rootReducer = combineReducers({
     user: userRedux,
-    cart: CartRedux
+    cart: CartRedux,
+    partner:PartnerRedux
 })
 
 // export default configureStore({

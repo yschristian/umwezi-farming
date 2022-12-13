@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, ScrollView, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TextInput, TouchableOpacity,Alert } from "react-native";
 import { Picker as SelectPicker } from '@react-native-picker/picker'
 import styles from "./styles";
 import { addPartner } from "../../../Redux/apiCalls/partnerActions";
@@ -7,17 +7,22 @@ import { useDispatch } from "react-redux";
 
 
 const Request = () => {
-    const [work, setWork] = useState("");
+
     const [Firstname, setFirstname] = useState("")
     const [Lastname, setLastname] = useState("")
     const [Description, setDescription] = useState("")
     const [Email, setEmail] = useState("")
+    const [Option, setOption] = useState("");
     const dispatch = useDispatch()
+
     // console.log(Email,work,FirstName,LastName,desc);
 
     const createPartner = () => {
         try {
-            addPartner(dispatch, { work, Email, Firstname, Lastname, Description })
+            if(Option==='', Email==='', Firstname==='', Lastname==='', Description===''){
+                Alert.alert('Please Provide All fields')
+            }
+            addPartner(dispatch, { Option, Email, Firstname, Lastname, Description })
             setFirstname("")
             setLastname("")
         } catch (error) {
@@ -48,11 +53,12 @@ const Request = () => {
                 />
                 <Text style={styles.optionTitle}>What you do?</Text>
                 <SelectPicker
-                    selectedValue={work}
-                    onValueChange={(itemValue, itemIndex) => setWork(itemValue)}
+                    selectedValue={Option}
+                    // ChangeText={(itemValue, itemIndex) => setOption(itemValue)}
+                    onChangeText={(value) => setOption(value)}
                     style={styles.selectPicker}>
-                    <SelectPicker.Item style={styles.item} label="Farmer" value="farmer" />
-                    <SelectPicker.Item style={styles.item} label="SalesPesron" value="salesPerson" />
+                    <SelectPicker.Item onChangeText={(value) => setOption(value)} style={styles.item} label="farmer" value={Option} />
+                    <SelectPicker.Item onChangeText={(value) => setOption(value)} style={styles.item} label="salesPerson" value={Option} />
                 </SelectPicker>
                 <TextInput
                     style={styles.requestText}

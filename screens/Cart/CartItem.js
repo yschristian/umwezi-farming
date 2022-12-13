@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList ,ScrollView} from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { calcTotal } from "../../utils/total"
 import { increment } from "../../Redux/CartRedux";
 
+
 const CartItems = ({ navigation }) => {
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const amount = calcTotal(cart.cart)
-    //  console.log(cart.cart)
+     console.log(cart.cart)
     return (
-        <View style={styles.container} >
+        <ScrollView style={styles.container} >
             <View style={styles.orderTotal}>
                 <Text style={styles.total}>You save total of:{amount}  total on this order</Text>
             </View>
@@ -61,7 +62,7 @@ const CartItems = ({ navigation }) => {
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

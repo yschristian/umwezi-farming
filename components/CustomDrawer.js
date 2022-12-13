@@ -2,16 +2,20 @@ import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity } from
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer"
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../Redux/apiCalls/userActions";
 
 
 
 const CustomDrawer = (props) => {
     const user = useSelector((state)=> state.user.currentUser)
-    // console.log(user);
+     console.log(user);
+     const dispatch = useDispatch()
     const navigation= useNavigation()
+    const logout = ()=>{
+        logoutUser(dispatch)
+        navigation.navigate("Login")
+    }
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props} contentContainerStyle={{ backgroundColor: "green" }}>
@@ -42,7 +46,8 @@ const CustomDrawer = (props) => {
                         <Text style={{ fontSize: 15, marginLeft: 5 }}>Tell a Friend</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ paddingVertical: 15 }}>
+                
+                <TouchableOpacity style={{ paddingVertical: 15 }} onPress={logout}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         <Ionicons name="exit-outline" size={24} color="black" />
                         <Text style={{ fontSize: 15, marginLeft: 5 }}>Log Out</Text>

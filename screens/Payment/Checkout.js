@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { publicRequest } from '../../RequestMethod';
 import { useSelector } from 'react-redux';
+import axios from "axios"
 
 
 const Checkout = ({total,products}) => {
@@ -11,7 +12,7 @@ const Checkout = ({total,products}) => {
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
     console.log(products);
     const user = useSelector((state)=> state.user.currentUser)
-    console.log(user.user._id);
+    console.log(user.token);
     const subscribe = async () => {
         try {
             const res = await publicRequest.post("/checkout/pay", { name, amount })
@@ -29,14 +30,19 @@ const Checkout = ({total,products}) => {
             if (initSheet.error) return Alert.alert(initSheet.error.message);
             const openPaymentSheet = await presentPaymentSheet({ clientSecret });
             if (openPaymentSheet.error) return Alert.alert(openPaymentSheet.error.message);
-            const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",
-                {
+            const dt = JSON.stringify({
                     UserId:user.user._id,
                     Products: products,
                     Amount: amount,
                     Status:"complete"
+            })
+            const config = {
+                headers:{
+                    "Content-type":"application/json",
+                    "Authorization":user.token
                 }
-            );
+            }
+            const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",dt,config);
             const ordersData = order.data;
             console.log(ordersData)
         } catch (error) {

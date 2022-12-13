@@ -1,5 +1,5 @@
-import React, { useState ,useEffect} from "react";
-import { Text, View, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, Alert, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
@@ -12,9 +12,12 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation()
-    
+
     const createUser = () => {
-        addUser(dispatch, {username, email, password})
+        if (username === '' || email === '' || password === '') {
+            Alert.alert('Please fill in your credentials');
+        }
+        addUser(dispatch, { username, email, password })
         setUsername("")
         setEmail("")
         setPassword("")
@@ -49,7 +52,7 @@ const Register = () => {
                     <Text>
                         Already a Member?
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Text style={styles.textRequest}>Login</Text>
                     </TouchableOpacity>
 

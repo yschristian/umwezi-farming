@@ -8,7 +8,6 @@ import Recommanded from '../Product/Recommanded';
 const Search = () => {
     const navigation = useNavigation()
     const [search, setSearch] = useState('');
-    const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
      
     console.log(filteredDataSource);
@@ -17,7 +16,6 @@ const Search = () => {
         fetch('https://umwezi-farming-api.vercel.app/product/All')
             .then((response) => response.json())
             .then((responseJson) => {
-                setFilteredDataSource(responseJson);
                 setMasterDataSource(responseJson);
             })
             .catch((error) => {
@@ -25,26 +23,15 @@ const Search = () => {
             });
     }, []);
 
-    const searchFilterFunction = (text) => {
-        // Check if searched text is not blank
-        if (text) {
-            // Inserted text is not blank
-            // Filter the masterDataSource
-            // Update FilteredDataSource
-            const newData = masterDataSource.filter(function (item) {
-                const itemData = item.title
-                    ? item.title.toUpperCase()
-                    : ''.toUpperCase();
-                const textData = text.toUpperCase();
-                return itemData.indexOf(textData) > -1;
-            });
-            setFilteredDataSource(newData);
-            setSearch(text);
+    const searchFilterFunction = () => {
+        if (search) {
+            return masterDataSource.filter((product) => {
+                const address = product.Address.toLowerCase().includes(search.toLowerCase())
+                const title = product.Title.toLowerCase().includes(search.toLowerCase())
+                return address || title
+            })
         } else {
-            // Inserted text is blank
-            // Update FilteredDataSource with masterDataSource
-            setFilteredDataSource(masterDataSource);
-            setSearch(text);
+            return []
         }
     };
 
@@ -61,7 +48,7 @@ const Search = () => {
             />
              <FlatList
                 numColumns={2}
-                data={filteredDataSource}
+                data={searchFilterFunction()}
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
                     <Recommanded />

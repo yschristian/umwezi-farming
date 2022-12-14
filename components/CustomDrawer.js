@@ -6,15 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../Redux/apiCalls/userActions";
 
 
-
 const CustomDrawer = (props) => {
-    const user = useSelector((state)=> state.user.currentUser)
-     console.log(user);
-     const dispatch = useDispatch()
-    const navigation= useNavigation()
-    const logout = ()=>{
+    const user = useSelector((state) => state.user.currentUser)
+    //  console.log(user);
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+    const logout = () => {
         logoutUser(dispatch)
-        navigation.navigate("Login")
+        alert("are you sure you want to logout?",
+            navigation.navigate("Login")
+        )
+        
     }
     return (
         <View style={{ flex: 1 }}>
@@ -27,9 +29,9 @@ const CustomDrawer = (props) => {
                         source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
                         style={{ height: 80, width: 80, borderRadius: 40, marginBottom: 10 }}
                     />
-                     {user ? <Text style={{color:"blue",fontSize: 18}}>Welcome: {user.user.username} </Text> : <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+                    {user ? <Text style={{ color: "blue", fontSize: 18 }}>Welcome: {user.user.username} </Text> : <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Text style={{ color: "black", fontSize: 18 }}>Login/Register</Text>
-                    </TouchableOpacity>} 
+                    </TouchableOpacity>}
                     {/* <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
                         <Text style={{ color: "black", fontSize: 18 }}>Login/Register</Text>
                     </TouchableOpacity> */}
@@ -46,13 +48,14 @@ const CustomDrawer = (props) => {
                         <Text style={{ fontSize: 15, marginLeft: 5 }}>Tell a Friend</Text>
                     </View>
                 </TouchableOpacity>
-                
-                <TouchableOpacity style={{ paddingVertical: 15 }} onPress={logout}>
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Ionicons name="exit-outline" size={24} color="black" />
-                        <Text style={{ fontSize: 15, marginLeft: 5 }}>Log Out</Text>
-                    </View>
-                </TouchableOpacity>
+                {!user ? user === null :
+                    <TouchableOpacity style={{ paddingVertical: 15 }} onPress={logout}>
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            <Ionicons name="exit-outline" size={24} color="black" />
+                            <Text style={{ fontSize: 15, marginLeft: 5 }}>Log Out</Text>
+                        </View>
+                    </TouchableOpacity>
+                }
             </View>
         </View>
 

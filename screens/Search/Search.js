@@ -10,8 +10,8 @@ const Search = () => {
     const [search, setSearch] = useState('');
     const [masterDataSource, setMasterDataSource] = useState([]);
      
-    console.log(filteredDataSource);
-    console.log(search);
+    // console.log(filteredDataSource);
+    // console.log(search);
     useEffect(() => {
         fetch('https://umwezi-farming-api.vercel.app/product/All')
             .then((response) => response.json())
@@ -43,8 +43,8 @@ const Search = () => {
                 style={styles.search}
                 placeholder="serch here"
                 value={search}
-                onChangeText={(text) => searchFilterFunction(text)}
-                onClear={(text) => searchFilterFunction('')}
+                onChangeText={(text) => setSearch(text)}
+                 onClear={(text) => setSearch('')}
             />
              <FlatList
                 numColumns={2}

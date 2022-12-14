@@ -4,26 +4,32 @@ import Order from '../MyOrder/Order';
 import Product from '../Product/Product';
 import HomeTabNavigator from './HomeTabNavigator';
 import { FontAwesome, AntDesign, Ionicons, Feather } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 
 const AuthStack = () => {
+    const user = useSelector((state)=> state.user.currentUser)
+    const errorm = ()=>{
+        alert("you are not logged")
+    }
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}
 
-            // screenOptions={{
-            //     headerShown: false,
-            // }}
-            >
+        // screenOptions={{
+        //     headerShown: false,
+        // }}
+        >
             <Drawer.Screen name="Home" component={HomeTabNavigator} options={{
                 drawerIcon: ({ color }) => (
                     <FontAwesome name="home" size={28} color={color} />
                 ),
                 headerShown: false,
-            
+
             }}
 
             />
+            {!user ? errorm :
             <Drawer.Screen name="My order" component={Order}
                 options={{
                     drawerIcon: ({ color }) => (
@@ -31,15 +37,17 @@ const AuthStack = () => {
                     ),
                 }}
             />
+             } 
             <Drawer.Screen name="Product" component={Product}
                 options={{
                     drawerIcon: ({ color }) => (
                         <FontAwesome name="product-hunt" size={24} color={color} />
 
                     )
-                        
+
                 }}
                 screenOptions={{ headerShown: false }} />
+            
         </Drawer.Navigator>
     )
 }

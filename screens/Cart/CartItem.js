@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList ,ScrollView} 
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { calcTotal } from "../../utils/total"
-import { increment } from "../../Redux/CartRedux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CartItems = ({ navigation }) => {
@@ -61,7 +60,7 @@ const CartItems = ({ navigation }) => {
                             </View>
                         </View>
                         <View style={styles.iconCont}>
-                            <TouchableOpacity onPress={() => dispatch(increment(item._id))}>
+                            <TouchableOpacity >
                                 <Entypo name="plus" size={24} color="black" />
                             </TouchableOpacity>
                             <Text style={styles.quantity}>{item.quantity}</Text>

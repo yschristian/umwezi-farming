@@ -5,14 +5,25 @@ import Product from '../Product/Product';
 import HomeTabNavigator from './HomeTabNavigator';
 import { FontAwesome, AntDesign, Ionicons, Feather } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
 const AuthStack = () => {
-    const user = useSelector((state)=> state.user.currentUser)
-    const errorm = ()=>{
-        alert("you are not logged")
-    }
+    const navigation = useNavigation()
+
+    // const handlerCheckOut = async()=>{
+    //     try {
+    //         const res = await AsyncStorage.getItem("umwezi")
+    //         if(res){
+    //             navigation.navigate("Myorder")
+    //         }else{
+    //             navigation.navigate("Login")
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //  }
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}
 
@@ -29,15 +40,14 @@ const AuthStack = () => {
             }}
 
             />
-            {!user ? errorm :
-            <Drawer.Screen name="My order" component={Order}
+    
+            <Drawer.Screen name="Myorder" component={Order}
                 options={{
                     drawerIcon: ({ color }) => (
                         <Feather name="package" size={24} color={color} />
                     ),
                 }}
             />
-             } 
             <Drawer.Screen name="Product" component={Product}
                 options={{
                     drawerIcon: ({ color }) => (

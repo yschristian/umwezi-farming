@@ -21,6 +21,7 @@ const Register = () => {
         setUsername("")
         setEmail("")
         setPassword("")
+        Alert.alert('Please fill in your credentials',navigation.navigate("Home"));
     }
     return (
         <ScrollView style={styles.container}>

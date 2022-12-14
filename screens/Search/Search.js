@@ -52,7 +52,7 @@ const Search = () => {
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
                     <View style={styles.flatList} >
-                        <Recommanded  key={item._id}/>
+                        <Recommanded key={item._id} />
                     </View>
 
                 )}
@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     flatList: {
-        marginBottom: 23,
+        marginTop: 100,
     }
 })

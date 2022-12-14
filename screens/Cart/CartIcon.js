@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 
 const CartIcon = () => {
   const  { cart: cartItems }  = useSelector(state => state.cart)
-  // console.log(cartItems.length);
+  // console.log(cartItems);
   return (
     <>
       {cartItems.length ? (
         <View style={styles.badge}>
-          <Text style={styles.text}>{cartItems?.length}</Text>
+          <Text style={styles.text}>{cartItems.length}</Text>
         </View>
-    ) : null}
+      ) : null}
     </>
   );
 };

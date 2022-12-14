@@ -7,14 +7,14 @@ import axios from "axios"
 import removeCart from '../../Redux/apiCalls/cartActions';
 
 
-const Checkout = ({total,products}) => {
+const Checkout = ({ total, products }) => {
     const [name, setName] = useState('');
     const [amount] = useState(total);
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
-    console.log(products);
-    const dispatch = useDispatch()
-    const user = useSelector((state)=> state.user.currentUser)
-    const cart = useSelector(state => state.cart)
+    // console.log(products);
+
+    const user = useSelector((state) => state.user.currentUser)
+
     console.log(user.token);
     const subscribe = async () => {
         try {
@@ -34,21 +34,21 @@ const Checkout = ({total,products}) => {
             const openPaymentSheet = await presentPaymentSheet({ clientSecret });
             if (openPaymentSheet.error) return Alert.alert(openPaymentSheet.error.message);
             const dt = JSON.stringify({
-                    UserId:user.user._id,
-                    Products: products,
-                    Amount: amount,
-                    Status:"complete"
+                UserId: user.user._id,
+                Products: products,
+                Amount: amount,
+                Status: "complete"
             })
             const config = {
-                headers:{
-                    "Content-type":"application/json",
-                    "Authorization":user.token
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": user.token
                 }
             }
-            const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",dt,config);
+            const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create", dt, config);
             const ordersData = order.data;
             console.log(ordersData)
-            await removeCart(dispatch)
+            // await removeCart(dispatch)
         } catch (error) {
             console.log(error.message);
         }
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#8cd98c',
     },
-    btn:{
+    btn: {
         width: 80,
     },
-    
+
 })
 

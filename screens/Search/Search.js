@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, StyleSheet, Dimensions, FlatList,TouchableOpacity,Image ,Text} from "react-native"
+import { View, TextInput, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image, Text } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Recommanded from '../Product/Recommanded';
@@ -9,7 +9,7 @@ const Search = () => {
     const navigation = useNavigation()
     const [search, setSearch] = useState('');
     const [masterDataSource, setMasterDataSource] = useState([]);
-     
+
     // console.log(filteredDataSource);
     // console.log(search);
     useEffect(() => {
@@ -44,14 +44,17 @@ const Search = () => {
                 placeholder="serch here"
                 value={search}
                 onChangeText={(text) => setSearch(text)}
-                 onClear={(text) => setSearch('')}
+                onClear={(text) => setSearch('')}
             />
-             <FlatList
+            <FlatList
                 numColumns={2}
                 data={searchFilterFunction()}
                 keyExtractor={(item, index) => item._id}
                 renderItem={({ item }) => (
-                    <Recommanded />
+                    <View style={styles.flatList} >
+                        <Recommanded  key={item._id}/>
+                    </View>
+
                 )}
             />
         </View>
@@ -81,5 +84,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginLeft: 10
+    },
+    flatList: {
+        marginBottom: 23,
     }
 })

@@ -4,13 +4,28 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { calcTotal } from "../../utils/total"
 import { increment } from "../../Redux/CartRedux";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CartItems = ({ navigation }) => {
+    
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const amount = calcTotal(cart.cart)
-     console.log(cart.cart)
+    //  console.log(cart.cart)
+     const handlerCheckOut = async()=>{
+        try {
+            const res = await AsyncStorage.getItem("umwezi")
+            if(res){
+                navigation.navigate("Payment", {amount:amount, cart:cart.cart.map(product=>({productId:product._id,Quantity:product.quantity})) })
+            }else{
+                navigation.navigate("Login")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+     }
+     
+
     return (
         <ScrollView style={styles.container} >
             <View style={styles.orderTotal}>
@@ -58,7 +73,7 @@ const CartItems = ({ navigation }) => {
                 )}
             />
             <View style={styles.checkoutButton}>
-                <TouchableOpacity style={styles.checkoutContainer} onPress={() => navigation.navigate("Payment", {amount:amount, cart:cart.cart.map(product=>({productId:product._id,Quantity:product.quantity})) })}>
+                <TouchableOpacity style={styles.checkoutContainer} onPress={handlerCheckOut}>
                     <Text style={styles.checkout}>Checkout</Text>
                 </TouchableOpacity>
             </View>

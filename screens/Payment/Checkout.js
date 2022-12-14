@@ -2,8 +2,9 @@ import { useStripe } from '@stripe/stripe-react-native';
 import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { publicRequest } from '../../RequestMethod';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios"
+import removeCart from '../../Redux/apiCalls/cartActions';
 
 
 const Checkout = ({total,products}) => {
@@ -11,7 +12,9 @@ const Checkout = ({total,products}) => {
     const [amount] = useState(total);
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
     console.log(products);
+    const dispatch = useDispatch()
     const user = useSelector((state)=> state.user.currentUser)
+    const cart = useSelector(state => state.cart)
     console.log(user.token);
     const subscribe = async () => {
         try {
@@ -45,6 +48,7 @@ const Checkout = ({total,products}) => {
             const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create",dt,config);
             const ordersData = order.data;
             console.log(ordersData)
+            await removeCart(dispatch)
         } catch (error) {
             console.log(error.message);
         }
@@ -77,6 +81,7 @@ const styles = StyleSheet.create({
     },
     btn:{
         width: 80,
-    }
+    },
+    
 })
 

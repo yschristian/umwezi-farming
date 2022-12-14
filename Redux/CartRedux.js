@@ -69,8 +69,12 @@ const cartSlice = createSlice({
         //   clear(state) {
         //     return [];
         //   },
+        makeCartNull:(state)=>{
+                state.cart=null
+                return initialState
+        }
     }
 })
 
-export const { addProduct,increment } = cartSlice.actions;
+export const { addProduct,increment,makeCartNull } = cartSlice.actions;
 export default cartSlice.reducer

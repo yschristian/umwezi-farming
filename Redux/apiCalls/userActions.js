@@ -8,7 +8,7 @@ export const login = async (dispatch, user) => {
     try {
         const res = await publicRequest.post('/user/login', user)
         const jsonValue = JSON.stringify(res.data);
-        console.log(jsonValue);
+
         await AsyncStorage.setItem("umwezi",jsonValue);
         dispatch(loginSuccess(res.data))
     } catch (error) {
@@ -16,9 +16,10 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const logoutUser = (dispatch) => {
+export const logoutUser = async(dispatch) => {
     try{
-         dispatch(logout())
+        await dispatch(logout())
+         await AsyncStorage.removeItem("umwezi")
     }catch(err){
         
     }

@@ -8,7 +8,7 @@ import { logoutUser } from "../Redux/apiCalls/userActions";
 
 const CustomDrawer = (props) => {
     const user = useSelector((state) => state.user.currentUser)
-    //console.log(user);
+    console.log(user);
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const logout = () => {

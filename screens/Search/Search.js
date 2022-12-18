@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Recommanded from '../Product/Recommanded';
 
 
+
 const Search = () => {
     const navigation = useNavigation()
     const [search, setSearch] = useState('');
@@ -50,10 +51,8 @@ const Search = () => {
                 numColumns={2}
                 data={searchFilterFunction()}
                 keyExtractor={(item, index) => item._id}
-                renderItem={({ item }) => (
-                    <View style={styles.flatList} >
-                        <Recommanded key={item._id} />
-                    </View>
+                renderItem={({ item }) => ( 
+                        <Recommanded style={styles.flatList}/>
 
                 )}
             />
@@ -66,6 +65,7 @@ export default Search;
 const styles = StyleSheet.create({
     search: {
         paddingHorizontal: 10,
+        position:"relative"
     },
     searchContainer: {
         borderWidth: 2,
@@ -80,12 +80,15 @@ const styles = StyleSheet.create({
         zIndex: 100,
         width: Dimensions.get('screen').width - 20,
         marginLeft: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        
     },
     icon: {
         marginLeft: 10
     },
     flatList: {
         marginTop: 100,
+        position:"absolute"
+        
     }
 })

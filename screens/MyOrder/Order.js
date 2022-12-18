@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet,ScrollView } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useSelector } from "react-redux"
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -9,7 +9,7 @@ const Order = () => {
     const Navigation = useNavigation()
     const user = useSelector((state) => state.user.currentUser)
     const [order, setOrder] = useState([])
-    //  console.log(user.user._id);
+    //  console.log(user);
 
     const getOrder = async () => {
         try {
@@ -22,7 +22,7 @@ const Order = () => {
                 }
             }
             const res = await axios.get(`https://umwezi-farming-api.vercel.app/order/user/${user.user._id}`, config)
-            // console.log(res.data);
+            console.log(res.data);
             setOrder(res.data)
         } catch (error) {
 
@@ -32,17 +32,18 @@ const Order = () => {
         getOrder()
     }, [])
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
 
             <View>
                 <View style={styles.viewCont}>
                     <Text style={styles.title}>My Order</Text>
+                    {/* <Text style={styles.title}>{order.length}</Text> */}
                 </View>
 
 
                 {order ? order.map((item) => (
-                    <View style={styles.cardContainer} key={item._id}>
-                        <View style={styles.card}>
+                    // <View style={styles.cardContainer} key={item._id}>
+                        <View style={styles.card} key={item._id}>
                             {/* <Text style={styles.text1}>apple</Text> */}
                             <Text style={styles.text1}>{item.Products.map((pro) => (
                                 <View key={item._id}>
@@ -54,18 +55,18 @@ const Order = () => {
                             <Text style={styles.text}>Amount: $ {item.Amount} </Text>
 
                         </View>
-                    </View>)) :
+                    // </View>
+                    )) :
                     <View style={styles.ordermessage}>
                         <Text style={{ fontSize: 15 }}>no Records Found!</Text>
                         <TouchableOpacity onPress={() => Navigation.navigate("Recommanded")}>
                             <Text style={styles.textbutton}>Shop Now</Text>
                         </TouchableOpacity>
                     </View>
-
                 }
 
             </View>
-        </View>
+        </ScrollView>
     )
 }
 export default Order
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     card: {
-        marginTop: 15,
+        marginTop: 10,
         marginRight: 50,
         backgroundColor: "white",
         width: "90%",

@@ -5,6 +5,7 @@ import { publicRequest } from '../../RequestMethod';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios"
 import removeCart from '../../Redux/apiCalls/cartActions';
+import Toast from 'react-native-toast-message';
 
 
 const Checkout = ({ total, products }) => {
@@ -47,8 +48,14 @@ const Checkout = ({ total, products }) => {
             }
             const order = await axios.post("https://umwezi-farming-api.vercel.app/order/create", dt, config);
             const ordersData = order.data;
-            console.log(ordersData)
-            // await removeCart(dispatch)
+            if(ordersData.status == 200 || ordersData.status == 201) {
+                Toast.show({
+                  topOffset: 60,
+                  type: "success",
+                  text1: "order Completed",
+                  text2: "",
+                })}
+
         } catch (error) {
             console.log(error.message);
         }

@@ -1,20 +1,31 @@
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { View, Text, Image, StyleSheet } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useSelector } from "react-redux"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 const Order = () => {
     const Navigation = useNavigation()
-    const user = useSelector((user)=> state.user)
+    const user = useSelector((state) => state.user.currentUser)
     const [order, setOrder] = useState([])
+    //  console.log(user.user._id);
 
-
-    const getOrder = async() =>{
+    const getOrder = async () => {
         try {
-            const res = await axios.get("")
+            // const user = await AsyncStorage.getItem("umwezi")
+            // console.log(user)
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": user.token
+                }
+            }
+            const res = await axios.get(`https://umwezi-farming-api.vercel.app/order/user/${user.user._id}`, config)
+            // console.log(res.data);
+            setOrder(res.data)
         } catch (error) {
-            
+
         }
     }
     useEffect(() => {
@@ -25,26 +36,34 @@ const Order = () => {
 
             <View>
                 <View style={styles.viewCont}>
-                    <Text>My Order</Text>
+                    <Text style={styles.title}>My Order</Text>
                 </View>
 
 
-                <View style={styles.cardContainer}>
-                    <View style={styles.card}>
-                        <Text style={styles.text1}>apple</Text>
-                        <Text style={styles.text1}>Quantity</Text>
-                        <Text style={styles.text1}>Status</Text>
-                        <Text style={styles.text}>$23 </Text>
+                {order ? order.map((item) => (
+                    <View style={styles.cardContainer} key={item._id}>
+                        <View style={styles.card}>
+                            {/* <Text style={styles.text1}>apple</Text> */}
+                            <Text style={styles.text1}>{item.Products.map((pro) => (
+                                <View key={item._id}>
+                                    <Text style={styles.text}>Product: {pro.productId}</Text>
+                                    <Text style={styles.text}>Quantity: {pro.Quantity}</Text>
+                                </View>
+                            ))}</Text>
+                            <Text style={styles.text}>Status: {item.Status}</Text>
+                            <Text style={styles.text}>Amount: $ {item.Amount} </Text>
 
+                        </View>
+                    </View>)) :
+                    <View style={styles.ordermessage}>
+                        <Text style={{ fontSize: 15 }}>no Records Found!</Text>
+                        <TouchableOpacity onPress={() => Navigation.navigate("Recommanded")}>
+                            <Text style={styles.textbutton}>Shop Now</Text>
+                        </TouchableOpacity>
                     </View>
-                </View>
 
-            </View>
-            <View style={styles.ordermessage}>
-                <Text style={{ fontSize: 15 }}>no Records Found!</Text>
-                <TouchableOpacity onPress={() => Navigation.navigate("Recommanded")}>
-                    <Text style={styles.textbutton}>Shop Now</Text>
-                </TouchableOpacity>
+                }
+
             </View>
         </View>
     )
@@ -71,13 +90,16 @@ const styles = StyleSheet.create({
     },
     card: {
         marginTop: 15,
-        // marginBottom: 50,
+        marginRight: 50,
         backgroundColor: "white",
-        width: "100%",
-        height: 200,
+        width: "90%",
+        height: 150,
         marginHorizontal: 12,
         borderRadius: 15,
-        // marginVertical: 50,
+        textAlign: "center",
+        justifyContent:"center",
+        paddingHorizontal:10,
+        marginVertical: 50,
     },
     viewCont: {
         width: "100%",
@@ -87,4 +109,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginTop: 50,
     },
+    text:{
+        fontSize: 18,
+    },
+    title:{
+        fontSize: 18,
+        color:"green"
+    }
 })

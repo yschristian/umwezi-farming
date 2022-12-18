@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { Text, View, Image,ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, Image, ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import { useSelector } from "react-redux";
+
 
 
 const UserProfile = () => {
+  const user = useSelector((state) => state.user.currentUser)
   const [modalVisible, setModalVisible] = useState(false);
-  const [ email, setEmail] = useState("yubahwesc@gmail.com")
-  const [ username, setUsername] = useState("yubahwe")
- const handleUpdate = () =>{}
+  const [email, setEmail] = useState("yubahwesc@gmail.com")
+  const [username, setUsername] = useState("yubahwe")
+  const handleUpdate = () => { }
 
   return (
+
     <ScrollView style={styles.container}>
       <View style={styles.centeredView}>
         <Modal
@@ -33,8 +37,8 @@ const UserProfile = () => {
                   <FontAwesome name="upload" size={24} color="white" />
                 </TouchableOpacity>
               </View>
-              <TextInput onChangeText={()=> setEmail(email)} style={styles.userText} placeholder="email" />
-              <TextInput onChangeText={()=> setUsername(username)} style={styles.userText} placeholder="username" />
+              <TextInput onChangeText={() => setEmail(email)} style={styles.userText} placeholder="email" />
+              <TextInput onChangeText={() => setUsername(username)} style={styles.userText} placeholder="username" />
               <View class={styles.modalButn}>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
@@ -54,10 +58,10 @@ const UserProfile = () => {
         </Modal>
       </View>
       <View style={styles.title}>
-        <Text
+        {/* <Text
           style={styles.text}
         >Welcome Yubahwe
-        </Text>
+        </Text> */}
       </View>
       <View style={styles.userDetails}>
         <Image
@@ -65,8 +69,9 @@ const UserProfile = () => {
           source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
         />
         <View>
-          <Text style={styles.userdata} >Email:{email}</Text>
-          <Text style={styles.userdata}>Username:{username}</Text>
+          <Text style={styles.userdata} >Email:{user.user.email}</Text>
+          <Text style={styles.userdata}>Username:{user.user.username}</Text>
+          <Text style={styles.userdata}>role:{user.user.role}</Text>
         </View>
         <Pressable style={styles.butn} onPress={() => setModalVisible(!modalVisible)}>
           <Text style={styles.changeButton}>Change profile</Text>
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#8cd98c",
     width: "100%",
     height: "100%",
-    flex:1
+    flex: 1
   },
   text: {
     marginTop: 50,
@@ -151,7 +156,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "green",
+    backgroundColor: "#8cd98c",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -166,7 +171,7 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     borderRadius: 20,
     padding: 10,
-    flexDirection:'row'
+    flexDirection: 'row'
   },
   textStyle: {
     color: "white",

@@ -9,11 +9,26 @@ import { View, TouchableOpacity } from "react-native"
 import CartIcon from "../Cart/CartIcon.js";
 import AuthStack from "./AuthStack";
 import { useNavigation } from "@react-navigation/native";
+import UserProfile from "../User/Profile/UserProfile";
+import ProfileTabNavigator from "./ProfileTabNavigator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tab = createBottomTabNavigator()
 
 const HomeTabNavigator = () => {
     const navigation = useNavigation()
+    const handlerCheckOut = async () => {
+        try {
+            const res = await AsyncStorage.getItem("umwezi")
+            if (res) {
+                navigation.navigate("Profile")
+            } else {
+                navigation.navigate("Login")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Tab.Navigator style={styles.icons}>
             <Tab.Screen
@@ -73,7 +88,7 @@ const HomeTabNavigator = () => {
                     headerRight: () => (
                         <View style={styles.multipleIcon}>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
-                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')}/>
+                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')} />
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
                                 <Ionicons name="notifications-outline" size={24} color="black" />
@@ -107,7 +122,7 @@ const HomeTabNavigator = () => {
                     headerRight: () => (
                         <View style={styles.multipleIcon}>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
-                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')}/>
+                                <Ionicons name="search" size={24} color="black" onPress={() => navigation.navigate('Search')} />
                             </TouchableOpacity>
                             <TouchableOpacity style={{ marginLeft: 10 }} >
                                 <Ionicons name="notifications-outline" size={24} color="black" />
@@ -123,13 +138,17 @@ const HomeTabNavigator = () => {
                     )
                 }}
             />
+
             <Tab.Screen
+
                 name={'Settings'}
                 style={styles.icons}
-                component={Home}
+                component={ProfileTabNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
-                        <Feather name="settings" style={styles.icon} size={28} color={color} />
+                        <TouchableOpacity onPress={handlerCheckOut}>
+                            <Feather name="settings" style={styles.icon} size={28} color={color} />
+                        </TouchableOpacity>
                     ),
                     headerLeft: () => (
                         <View>
@@ -138,8 +157,10 @@ const HomeTabNavigator = () => {
                             </TouchableOpacity>
                         </View>
                     ),
+                    headerShown: false,
                 }}
             />
+
 
         </Tab.Navigator>
     )

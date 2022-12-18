@@ -27,7 +27,7 @@ const ProductList = () => {
                                     source={{ uri: item.image }}
                                 />
                                 <Text style={styles.text1}>{item.title}</Text>
-                                <Text style={styles.text}>$ {item.price}</Text>
+                                <Text style={styles.text}> {item.price}</Text>
                                 <Ionicons name="add-circle-outline" style={styles.icon} size={30} color="green" />
                             </View>
                         </View>

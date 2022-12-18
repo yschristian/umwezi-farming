@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         backgroundColor: "white",
-        width: 95,
+        width: 85,
         height: 70,
         justifyContent: "center",
         alignItems: "center",

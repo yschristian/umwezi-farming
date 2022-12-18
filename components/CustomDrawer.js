@@ -4,18 +4,21 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../Redux/apiCalls/userActions";
+import Toast from 'react-native-toast-message';
 
 
 const CustomDrawer = (props) => {
     const user = useSelector((state) => state.user.currentUser)
-    console.log(user);
+    // console.log(user);
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const logout = () => {
         logoutUser(dispatch)
-         alert("are you sure you want to logout?",
+        //  alert("are you sure you want to logout?",
         navigation.navigate("Login")
-        )
+        Toast.show({
+            text1:"you are logged out"
+        })
         
     }
     return (

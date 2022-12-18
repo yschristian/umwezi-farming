@@ -3,8 +3,10 @@ import axios from "axios"
 import { useState,useEffect } from "react"
 import { View, Text, Image, StyleSheet } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
+import { useSelector } from "react-redux"
 const Order = () => {
     const Navigation = useNavigation()
+    const user = useSelector((user)=> state.user)
     const [order, setOrder] = useState([])
 
 

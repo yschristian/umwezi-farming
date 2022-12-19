@@ -7,14 +7,15 @@ import { useSelector } from "react-redux"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 const Order = () => {
     const Navigation = useNavigation()
-    const user = useSelector((state) => state.user.currentUser)
+    // const user = useSelector((state) => state.user.currentUser)
     const [order, setOrder] = useState([])
     //  console.log(user);
 
     const getOrder = async () => {
         try {
-            // const user = await AsyncStorage.getItem("umwezi")
-            // console.log(user)
+            const data = await AsyncStorage.getItem("umwezi")
+            const user = JSON.parse(data)
+            // console.log(user.token);
             const config = {
                 headers: {
                     "Content-type": "application/json",
@@ -22,7 +23,7 @@ const Order = () => {
                 }
             }
             const res = await axios.get(`https://umwezi-farming-api.vercel.app/order/user/${user.user._id}`, config)
-            console.log(res.data);
+            // console.log(res.data);
             setOrder(res.data)
         } catch (error) {
 
@@ -30,7 +31,7 @@ const Order = () => {
     }
     useEffect(() => {
         getOrder()
-    }, [])
+    }, [order])
     return (
         <ScrollView style={styles.container}>
 

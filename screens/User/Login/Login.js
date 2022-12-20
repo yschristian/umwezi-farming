@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, ScrollView, Alert, TextInput, TouchableOpacity, Pressable } from "react-native";
+import { Text, View,ActivityIndicator, ScrollView, Alert, TextInput, TouchableOpacity, Pressable } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import  {login}  from "../../../Redux/apiCalls/userActions";
+import { login } from "../../../Redux/apiCalls/userActions";
 
 const Login = () => {
     const navigation = useNavigation()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
-    const [isOnline, setIsOnline] = useState(false)
+    const [isOnline, setIsOnline] = useState(true)
     // useEffect(() => {
     //     if (isOnline) {
     //         navigation.navigate("AuthStack")
     //     }
     // }, [isOnline])
 
-    const loginUser = async() => {
+    const loginUser = async () => {
         if (email === '' || password === '') {
             Alert.alert('Please fill in your credentials');
         }
         await login(dispatch, { email, password })
+        setIsOnline(false)
         navigation.navigate("AuthStack")
     }
     return (
@@ -42,9 +43,9 @@ const Login = () => {
                     secureTextEntry={true}
                     onChangeText={(value) => setPassword(value)}
                 />
-                <TouchableOpacity style={styles.button} onPress={loginUser}>
+                {!isOnline ? <ActivityIndicator size="large" color="#8cd98c" />:<TouchableOpacity style={styles.button} onPress={loginUser}>
                     <Text style={styles.buttonText}>LOGIN</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
                 <View style={styles.row}>
                     <Text>
                         Are you a Member? if not ,

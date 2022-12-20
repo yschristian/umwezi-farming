@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, Image, ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const UserProfile = () => {
-  const user = useSelector((state) => state.user.currentUser)
+  const [u, setU] = useState([])
+  const getUser = async () => {
+    const data = await AsyncStorage.getItem("umwezi")
+    // const user = JSON.parse(data)
+    setU(JSON.parse(data))
+  }
   const [modalVisible, setModalVisible] = useState(false);
-  const [email, setEmail] = useState("yubahwesc@gmail.com")
-  const [username, setUsername] = useState("yubahwe")
+  const [email1, setEmail1] = useState("yubahwesc@gmail.com")
+  const [username1, setUsername1] = useState("yubahwe")
   const handleUpdate = () => { }
 
+  useEffect(() => {
+    getUser()
+  }, [])
+  // console.log(u.user.username);
   return (
 
     <ScrollView style={styles.container}>
@@ -37,8 +46,8 @@ const UserProfile = () => {
                   <FontAwesome name="upload" size={24} color="white" />
                 </TouchableOpacity>
               </View>
-              <TextInput onChangeText={() => setEmail(email)} style={styles.userText} placeholder="email" />
-              <TextInput onChangeText={() => setUsername(username)} style={styles.userText} placeholder="username" />
+              <TextInput onChangeText={() => setEmail1(email1)} style={styles.userText} placeholder="email" />
+              <TextInput onChangeText={() => setUsername1(username1)} style={styles.userText} placeholder="username" />
               <View class={styles.modalButn}>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
@@ -69,9 +78,9 @@ const UserProfile = () => {
           source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
         />
         <View>
-          <Text style={styles.userdata} >Email:{user.user.email}</Text>
-          <Text style={styles.userdata}>Username:{user.user.username}</Text>
-          <Text style={styles.userdata}>role:{user.user.role}</Text>
+          {/* <Text style={styles.userdata} >Email:{u.user.email}</Text>
+          <Text style={styles.userdata}>Username:{u.user.username}</Text>
+          <Text style={styles.userdata}>role:{u.user.role}</Text> */}
         </View>
         <Pressable style={styles.butn} onPress={() => setModalVisible(!modalVisible)}>
           <Text style={styles.changeButton}>Change profile</Text>

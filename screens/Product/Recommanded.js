@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList,activityIndicator  } from "react-native"
+import { View, Text,ActivityIndicator, Image, StyleSheet, TouchableOpacity, FlatList,activityIndicator  } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
@@ -9,11 +9,13 @@ import axios from "axios";
 const Recommanded = () => {
     const navigation = useNavigation()
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
     
     const getProduct = async () => {
         try {
             const res = await axios.get("https://umwezi-farming-api.vercel.app/product/All")
             setProducts(res.data);
+            setLoading(false)
         } catch (error) {
             console.log({ "error": error });
         }
@@ -25,7 +27,7 @@ const Recommanded = () => {
     
     return (
         <View style={styles.container}>
-            <FlatList
+           { loading ? <ActivityIndicator size="large" color="#8cd98c" /> :<FlatList
                 numColumns={2}
                 data={products}
                 keyExtractor={(item, index) => item._id}
@@ -51,6 +53,7 @@ const Recommanded = () => {
                     </View>
                 )}
             />
+         }
         </View>
     )
 }

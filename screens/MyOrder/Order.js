@@ -9,6 +9,7 @@ const Order = () => {
     const Navigation = useNavigation()
     // const user = useSelector((state) => state.user.currentUser)
     const [order, setOrder] = useState([])
+    
     //  console.log(user);
 
     const getOrder = async () => {

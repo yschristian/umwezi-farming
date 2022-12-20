@@ -42,7 +42,6 @@ const Order = () => {
                     {/* <Text style={styles.title}>{order.length}</Text> */}
                 </View>
 
-
                 {order ? order.map((item) => (
                     // <View style={styles.cardContainer} key={item._id}>
                         <View style={styles.card} key={item._id}>

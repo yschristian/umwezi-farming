@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, Image, ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
+import {FlatList, Text, View, Image, ScrollView, Pressable, StyleSheet, Modal, TextInput, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 const UserProfile = () => {
   const [u, setU] = useState([])
   const getUser = async () => {
     const data = await AsyncStorage.getItem("umwezi")
-    // const user = JSON.parse(data)
-    setU(JSON.parse(data))
+    const user = JSON.parse(data)
+    setU(JSON.parse(user))
   }
   const [modalVisible, setModalVisible] = useState(false);
   const [email1, setEmail1] = useState("yubahwesc@gmail.com")
@@ -20,7 +21,7 @@ const UserProfile = () => {
   useEffect(() => {
     getUser()
   }, [])
-  // console.log(u.user.username);
+  console.log(u);
   return (
 
     <ScrollView style={styles.container}>
@@ -77,11 +78,18 @@ const UserProfile = () => {
           style={styles.image}
           source={{ uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png" }}
         />
-        <View>
-          {/* <Text style={styles.userdata} >Email:{u.user.email}</Text>
-          <Text style={styles.userdata}>Username:{u.user.username}</Text>
-          <Text style={styles.userdata}>role:{u.user.role}</Text> */}
+        <FlatList 
+        data={u}
+        keyExtractor={(item, index) => item._id}
+        renderItem={({ item }) => (
+          <View>
+          <Text style={styles.userdata} >Email:{item.user.email}</Text>
+          <Text style={styles.userdata}>Username:{item.user.username}</Text>
+          <Text style={styles.userdata}>role:{item.user.role}</Text>
         </View>
+        )}
+        />
+       
         <Pressable style={styles.butn} onPress={() => setModalVisible(!modalVisible)}>
           <Text style={styles.changeButton}>Change profile</Text>
         </Pressable>
